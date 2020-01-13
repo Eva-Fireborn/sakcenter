@@ -1,0 +1,26 @@
+@import './variables.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .backgroundImage {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: $brown;
+
+    > img {
+      height: 100%;
+      min-width: 100%;
+      opacity: 0.5;
+    }
+  }
+
+  .content {
+    position: relative;
+    top: 100px;
+    width: 100%;
+  }
+}
