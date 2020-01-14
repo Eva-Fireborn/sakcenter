@@ -1,0 +1,9 @@
+@import '../../styles/variables.scss';
+
+.callToActionButton {
+    background-color: $red;
+    color: $white;
+    padding: 10px;
+    border-radius: $standardBorderRadius;
+    border: none;
+}

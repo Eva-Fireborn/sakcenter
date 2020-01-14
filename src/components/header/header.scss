@@ -1,4 +1,4 @@
-@import '../../variables.scss';
+@import '../../styles/variables.scss';
 
 .headerBar {
     position: fixed;
@@ -39,18 +39,8 @@
         }
 
         > .logo {
-            position: relative;
-
-            &:before {
-            content: '';
-            background-color: $red;
-            border-radius: 50%;
-            height: 40px;
-            width: 40px;
-            position: absolute;
-            top: -7px;
-            left: 42px;
-            z-index: -1;
+            img {
+                height: 40px;
             }
         }
     }

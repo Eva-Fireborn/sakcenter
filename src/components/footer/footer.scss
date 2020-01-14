@@ -1,6 +1,62 @@
-@import '../../variables.scss';
+@import '../../styles/variables.scss';
 
 .footer {
-    position: relative;
+    position: absolute;
     background-color: $black;
+    width: 100%;
+    bottom: 0px;
+    display: flex;
+    justify-content: space-around;
+
+    .SClogo {
+        background-color: $grey;
+        padding: 10px;
+        margin: 10px 20px;
+        border-radius: $standardBorderRadius;
+
+        > img {
+            width: 150px;
+        }
+    }
+
+    .companyAddress {
+        flex: 1;
+
+        > p {
+            color: $white;
+        }
+    }
+
+    .socialMedia {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 20px;
+
+        h4 {
+            color: $white;
+            letter-spacing: 1px;
+        }
+
+        .socialMediaInner {
+            display: flex;
+            justify-content: space-evenly;
+
+            .socialMediaLogo {
+                background-color: $greyHalfOp;
+                padding: 10px;
+                margin: 10px;
+                width: 40px;
+                border-radius: $standardBorderRadius;
+        
+                > img {
+                    height: 40px;
+                    width: auto;
+                }
+        
+                &:hover {
+                    background-color: $grey;
+                }
+            }
+        }
+    }
 }
