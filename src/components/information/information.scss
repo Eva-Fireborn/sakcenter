@@ -1,0 +1,18 @@
+@import '../../styles/variables.scss';
+
+.info {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+
+    .wrapper {
+        width: 60%;
+        background-color: $grey;
+        padding: 50px;
+        border-radius: $standardBorderRadius;
+        column-count: 2;
+        column-width: 45%;
+        column-gap: 50px;
+    }
+}

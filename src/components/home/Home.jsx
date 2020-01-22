@@ -1,12 +1,11 @@
 import React from 'react';
-import CallToActionButton from '../reusables/CallToActionButton';
+import SCpic from '../../img/lampcenterRek.jpg';
 import './home.scss';
 
 const Home= () => {
     return (
         <div>
-            <h3>Home</h3>
-            <CallToActionButton buttonText="Klicka på mig" />
+            <img className="mainPic" src={SCpic} alt="sakcenter" />
         </div>
     )
 }

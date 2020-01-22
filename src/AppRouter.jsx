@@ -8,16 +8,13 @@ import Contact from "./components/contact/Contact";
 import Information from "./components/information/Information";
 import Gallery from "./components/gallery/Gallery";
 import Workshops from "./components/workshops/Workshops";
-import bgImg from "./img/bgWallpaper.jpg";
+import MainAdmin from "././components/mainAdmin/MainAdmin";
 
 
 
 const AppRouter = () => {
     return(
-        <div className="wrapper">
-            <div className="backgroundImage">
-                <img src={bgImg} alt="background" />
-            </div>
+        <div className="mainContainer">
             <Router>
                 <Header Link={Link} />
 
@@ -28,6 +25,7 @@ const AppRouter = () => {
                     <Route path="/Sortiment" exact component={Gallery} />
                     <Route path="/Workshop" exact component={Workshops} />
                     <Route path="/Kontakt" exact component={Contact} />
+                    <Route path="/Admin" exact component={MainAdmin} />
                 </div>
             </Router>
             <Footer />

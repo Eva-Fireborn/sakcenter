@@ -6,4 +6,12 @@
     padding: 10px;
     border-radius: $standardBorderRadius;
     border: none;
+
+    &:hover {
+        background-color: $black;
+    }
+
+    &:active{
+        color: $red;
+    }
 }

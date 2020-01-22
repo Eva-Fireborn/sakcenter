@@ -1,10 +1,12 @@
 @import './fonts.scss';
+@import './variables.scss';
 
 h4 {
     font-family: 'Proxima Nova Alt';
     font-weight: 600;
     font-size: 18px;
     line-height: 22px;
+    color: $black;
 }
 
 p {
@@ -12,6 +14,7 @@ p {
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
+    color: $black;
 }
 
 button {
@@ -19,6 +22,7 @@ button {
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
+    color: $black;
 }
 
 li {
@@ -26,4 +30,22 @@ li {
     font-size: 18px;
     line-height: 22px;
     letter-spacing: .5px;
+    color: $black;
+}
+
+.listItem {
+    padding-left: 1em;
+    position: relative;
+
+    &:before {
+        content: '';
+        background-color: $black;
+        border-radius: 100%;
+        width: 5px;
+        height: 5px;
+        position: absolute;
+        top: 5px;
+        left: 4px;
+
+    }
 }

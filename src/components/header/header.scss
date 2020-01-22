@@ -1,11 +1,13 @@
 @import '../../styles/variables.scss';
 
 .headerBar {
-    position: fixed;
-    top: 0px;
     height: 100px;
     width: 100%;
     background-image: linear-gradient(#b8b3a494, #bbb9b300);
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
 
     > nav {
         width: 100%;
@@ -32,9 +34,9 @@
             color: $black;
             font-weight: bold;
 
-            &:hover {
-                color: $white;
-            }
+                &:hover {
+                    color: $red;
+                }
             }
         }
 

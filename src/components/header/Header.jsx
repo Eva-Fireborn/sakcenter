@@ -1,6 +1,6 @@
 import React from 'react';
-//import Logo from '../../img/SC-logo.png';
-import LogoWhite from '../../img/SC-logo-white.png';
+import Logo from '../../img/SC-logo.png';
+//import LogoWhite from '../../img/SC-logo-white.png';
 import './header.scss';
 
 const Header = ({ Link }) => {
@@ -18,7 +18,7 @@ const Header = ({ Link }) => {
                         <Link to="/Sortiment">Sortiment</Link>
                     </li>
                     <li className="logo">
-                        <Link to="/"><img src={LogoWhite} alt="SC" /></Link>
+                        <Link to="/"><img src={Logo} alt="SC" /></Link>
                     </li>
                     <li>
                         <Link to="/Workshop">Workshops och föreläsningar</Link>

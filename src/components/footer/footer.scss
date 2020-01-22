@@ -1,15 +1,17 @@
 @import '../../styles/variables.scss';
 
 .footer {
-    position: absolute;
     background-color: $black;
     width: 100%;
-    bottom: 0px;
     display: flex;
     justify-content: space-around;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
 
     .SClogo {
-        background-color: $grey;
+        background-color: $greyHalfOp;
         padding: 10px;
         margin: 10px 20px;
         border-radius: $standardBorderRadius;

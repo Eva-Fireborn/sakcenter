@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+
+.mainAdminWrapper {
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .adminHeaderWrapper {
+        width: 100vw;
+        background-color: $blackHalfOp;
+        color: $red;
+        margin-bottom: 50px;
+
+        > h1 {
+            text-align: center;
+        }
+
+        > button {
+            position: relative;
+            left: calc(100vw - 150px);
+            bottom: 10px;
+        }
+    }
+
+    .tinyMceTest {
+        width: 70%;
+    }
+
+    .wrapper {
+        width: 70%;
+        overflow: hidden;
+    }
+}
