@@ -3,28 +3,28 @@ import Logo from '../../img/SC-logo.png';
 //import LogoWhite from '../../img/SC-logo-white.png';
 import './header.scss';
 
-const Header = ({ Link }) => {
+const Header = ({ Link, NavLink }) => {
     return (
         <div className="headerBar">
             <nav>
                 <ul className="menuBar">
                     <li>
-                        <Link to="/Om">Om Sakcenter</Link>
+                        <NavLink to="/Om">Om oss</NavLink>
                     </li>
                     <li>
-                        <Link to="/Uthyrning">Att hyra av oss</Link>
+                        <NavLink to="/Uthyrning">Uthyrning</NavLink>
                     </li>
                     <li>
-                        <Link to="/Sortiment">Sortiment</Link>
+                        <NavLink to="/Sortiment">Sortiment</NavLink>
                     </li>
                     <li className="logo">
-                        <Link to="/"><img src={Logo} alt="SC" /></Link>
+                        <Link to="/"><img src={Logo} alt="Sakcenter logotyp" /></Link>
                     </li>
                     <li>
-                        <Link to="/Workshop">Workshops och föreläsningar</Link>
+                        <NavLink to="/Workshop">Workshops och föreläsningar</NavLink>
                     </li>
                     <li>
-                        <Link to="/Kontakt">Kontakt</Link>
+                        <NavLink to="/Kontakt">Kontakt</NavLink>
                     </li>
                 </ul>
             </nav>

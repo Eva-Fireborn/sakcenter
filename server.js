@@ -2,7 +2,7 @@ const express = require('express');
 const expServer = express();
 const httpServer = require('http').createServer(expServer);
 const port = 4000;
-const {retrieveStartpage} = require('./backend.js');
+const { retrieveStartpage, updateStartpage } = require('./backend.js');
 const bodyParser = require('body-parser')
 expServer.use(
 	bodyParser.urlencoded({
@@ -20,26 +20,22 @@ expServer.use('/', function (req, res, next) {
 
 
 expServer.get('/APIretrieveAbout', (request, response) => {
-	const mysql = require('mysql');
-    const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'sakcenterLocal'
-  })
-  connection.connect(function(err) {
-      if (err) throw err;
-      console.log('connected!');
-  })
-    connection.query("SELECT * FROM startPage", function (err, result, fields) {
-        if (err) throw err;
-        console.log('result: ', result);
-        // console.log('fields: ', fields)
-        if (result) return response.send(result);
-    })
+	retrieveStartpage(result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
 
-    connection.end()
-	//response.send(resp);
+expServer.post('/APIpostAbout', (request, response) => {
+    console.log('req body: ', request.body);
+	updateStartpage(request.body.newContent, result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
 });
 
 

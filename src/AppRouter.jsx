@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Home from "./components/home/Home";
@@ -16,7 +16,7 @@ const AppRouter = () => {
     return(
         <div className="mainContainer">
             <Router>
-                <Header Link={Link} />
+                <Header Link={Link} NavLink={NavLink} />
 
                 <div className="content">
                     <Route path="/" exact component={Home} />

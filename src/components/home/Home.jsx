@@ -4,7 +4,7 @@ import './home.scss';
 
 const Home= () => {
     return (
-        <div>
+        <div className="homeWrapper">
             <img className="mainPic" src={SCpic} alt="sakcenter" />
         </div>
     )

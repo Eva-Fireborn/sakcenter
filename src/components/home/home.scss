@@ -1,3 +1,16 @@
-.mainPic {
+@import '../../styles/variables.scss';
+
+.homeWrapper {
+    height: calc(100vh - 150px);
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $white;
+    overflow: hidden;
+
+    .mainPic {
+        height: 200px;
+    }
 }
+

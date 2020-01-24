@@ -1,21 +1,42 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
+import Button from '../reusables/CallToActionButton';
+import API from '../../helperFunctions/ApiCalls';
 import './mainAdmin.scss';
 
 const MainAdmin= () => {
-    const [textfieldValue, setTextfield] = useState("<h1>Sakcenter</h1>");
+    const [textfieldValue, setTextfield] = useState("<p>Hämtar data</p>");
+    // const updated = true;
+
+    useEffect(()=> {
+        API.getAboutPage(res => {
+            console.log('res: ', res);
+            if (res[0].type === 'pageContent') {
+                setTextfield(res[0].content);
+            }
+        });
+    }, []);
+
+
 
     const handleEditorChange = (e) => {
         console.log(
-          'Content was updated:',
-          e.target.getContent()
+            'Content was updated:',
+            e.target.getContent()
         );
-        setTextfield(e.target.getContent());
-      }
+        const newText = e.target.getContent();
+        setTextfield(newText);
+    }
 
-      const createMarkup = () => {
-          return {__html: textfieldValue}
-      }
+    const sendTextToServer = () => {
+        console.log('detta skickas till api: ', textfieldValue);
+        API.updateAboutPage(textfieldValue);
+    }
+
+    const createMarkup = () => {
+        return {__html: textfieldValue}
+    }
+
     return(
         <div className="mainAdminWrapper">
             <div className="adminHeaderWrapper">
@@ -42,6 +63,7 @@ const MainAdmin= () => {
                     }}
                     onChange={handleEditorChange}
                 />
+                <Button buttonText="Spara text" onClick={sendTextToServer}/>
             </div>
             <div className="wrapper" dangerouslySetInnerHTML={createMarkup()}>
 

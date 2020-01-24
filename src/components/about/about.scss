@@ -1,15 +1,92 @@
 @import '../../styles/variables.scss';
 
 .about {
-    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding: 50px 0;
+    background-color: $grey;
+    border-radius: $standardBorderRadius;
+    padding: $mediumPadding 100px;
 
     .wrapper {
-        width: 70%;
-        background-color: $grey;
-        padding: 10px 20px;
+        width: 50%;
+        background-color: $white;
+        padding: $smallPadding;
         border-radius: $standardBorderRadius;
+        align-self: center;
+        margin-bottom: $mediumPadding;
+        padding: $mediumPadding;
+    }
+
+    .aboutPictures {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+
+        .upperBlock,
+        .bottomBlock {
+            width: 100%;
+            height: 400px;
+            display: flex;
+
+            .largeImageBlock {
+                flex: 1;
+                overflow: hidden;
+                position: relative;
+                margin: 2px;
+
+                > img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+
+            .smallImageBlock {
+                flex: 1;
+                overflow: hidden;
+                height: 60%;
+                position: relative;
+                margin: 2px;
+
+                > img {
+                    width: 50%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+            .right {
+                align-self: flex-end;
+            }
+
+            .left {
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            .imageOverlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: $brown;
+                z-index: 2;
+                opacity: 0.3;
+            }
+
+            .small {
+                width: 50%;
+            }
+
+            .rightPosition {
+                left: auto;
+                right: 0;
+            }
+            
+        }
     }
 }

@@ -3,7 +3,7 @@
 
 .mainContainer {
   display: grid;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: 150px auto auto;
   grid-template-columns: 100%;
   background-color: $white;
 
@@ -13,5 +13,6 @@
     grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 3;
+    padding: 20px 100px 100px;
   }
 }
