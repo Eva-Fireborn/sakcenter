@@ -2,7 +2,16 @@ const express = require('express');
 const expServer = express();
 const httpServer = require('http').createServer(expServer);
 const port = 4000;
-const { retrieveStartpage, updateStartpage } = require('./backend.js');
+const { 
+	retrieveAboutPage,
+	updateAboutPage,
+	retrieveWorkshopPage,
+	updateWorkshopPage,
+	retrieveInformationPage,
+	updateInformationPage,
+	retrieveGalleryPage,
+	updateGalleryPage
+ } = require('./backend.js');
 const bodyParser = require('body-parser')
 expServer.use(
 	bodyParser.urlencoded({
@@ -20,7 +29,34 @@ expServer.use('/', function (req, res, next) {
 
 
 expServer.get('/APIretrieveAbout', (request, response) => {
-	retrieveStartpage(result => {
+	retrieveAboutPage(result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
+
+expServer.get('/APIretrieveWorkshop', (request, response) => {
+	retrieveWorkshopPage(result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
+
+expServer.get('/APIretrieveInformation', (request, response) => {
+	retrieveInformationPage(result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
+
+expServer.get('/APIretrieveGallery', (request, response) => {
+	retrieveGalleryPage(result => {
 		response.send({
 			status: 200,
 			body: result
@@ -30,7 +66,37 @@ expServer.get('/APIretrieveAbout', (request, response) => {
 
 expServer.post('/APIpostAbout', (request, response) => {
     console.log('req body: ', request.body);
-	updateStartpage(request.body.newContent, result => {
+	updateAboutPage(request.body.newContent, result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
+
+expServer.post('/APIpostWorkshop', (request, response) => {
+    console.log('req body: ', request.body);
+	updateWorkshopPage(request.body.newContent, result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
+
+expServer.post('/APIpostInformation', (request, response) => {
+    console.log('req body: ', request.body);
+	updateInformationPage(request.body.newContent, result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
+
+expServer.post('/APIpostGallery', (request, response) => {
+    console.log('req body: ', request.body);
+	updateGalleryPage(request.body.newContent, result => {
 		response.send({
 			status: 200,
 			body: result

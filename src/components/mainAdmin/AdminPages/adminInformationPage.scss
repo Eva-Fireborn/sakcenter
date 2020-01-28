@@ -1,0 +1,14 @@
+@import '../../../styles/variables.scss';
+
+.adminInformation {
+    width: 90%;
+
+    .editor {
+        width: 100%;
+    }
+    
+    .wrapperText {
+        width: 70%;
+        overflow: hidden;
+    }
+}

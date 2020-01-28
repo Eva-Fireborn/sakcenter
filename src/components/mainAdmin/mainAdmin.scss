@@ -5,7 +5,7 @@
     z-index: 20;
     top: 0;
     left: 0;
-    min-width: 100vw;
+    width: 100%;
     min-height: 100vh;
     background-color: $white;
     display: flex;
@@ -13,7 +13,7 @@
     align-items: center;
 
     .adminHeaderWrapper {
-        width: 100vw;
+        width: 100%;
         background-color: $blackHalfOp;
         color: $red;
         margin-bottom: 50px;
@@ -27,14 +27,5 @@
             left: calc(100vw - 150px);
             bottom: 10px;
         }
-    }
-
-    .tinyMceTest {
-        width: 70%;
-    }
-
-    .wrapper {
-        width: 70%;
-        overflow: hidden;
     }
 }
