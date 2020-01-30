@@ -5,8 +5,9 @@ import './header.scss';
 
 const Header = ({ Link, NavLink }) => {
     return (
-        <div className="headerBar">
+        <header className="headerBar">
             <nav>
+                <img src={Logo} alt="Sakcenter logotyp" type="button" className="mobileMenuButton" />
                 <ul className="menuBar">
                     <li>
                         <NavLink to="/Om">Om oss</NavLink>
@@ -28,7 +29,7 @@ const Header = ({ Link, NavLink }) => {
                     </li>
                 </ul>
             </nav>
-        </div>
+        </header>
     )
 }
 export default Header;

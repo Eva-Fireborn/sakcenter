@@ -5,16 +5,21 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-    grid-column-start: 1;
+    /*grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 3;
-    grid-row-end: 4;
+    grid-row-end: 4;*/
 
     .SClogo {
-        background-color: $greyHalfOp;
-        padding: 10px;
-        margin: 10px 20px;
-        border-radius: $standardBorderRadius;
+        display: none;
+
+        @media (min-width: $screen-desktop) {
+            display: block;
+            background-color: $greyHalfOp;
+            padding: 10px;
+            margin: 10px 20px;
+            border-radius: $standardBorderRadius;
+        }
 
         > img {
             width: 150px;
@@ -23,41 +28,68 @@
 
     .companyAddress {
         flex: 1;
-
+        padding: 10px 20px;
         > p {
             color: $white;
+            margin: 5px;
         }
     }
 
     .socialMedia {
         display: flex;
         flex-direction: column;
-        margin: 10px 20px;
+        padding: 10px 20px;
+
+        @media (min-width: $screen-desktop) {
+
+        }
 
         h4 {
             color: $white;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            display: none;
+
+            @media (min-width: $screen-desktop){
+                display: inline-block;
+            }
         }
 
         .socialMediaInner {
             display: flex;
-            justify-content: space-evenly;
+            flex-direction: column;
+
+            @media (min-width: $screen-desktop) {
+                flex-direction: row;
+                justify-content: space-between;
+            }
 
             .socialMediaLogo {
                 background-color: $greyHalfOp;
-                padding: 10px;
-                width: 60px;
-                height: 60px;
+                padding: 5px;
+                width: 40px;
+                height: 40px;
                 border-radius: $standardBorderRadius;
+                margin: 5px 0;
+
+                @media (min-width: $screen-desktop) {
+                    padding: 10px;
+                    width: 60px;
+                    height: 60px;
+                    &:hover {
+                        background-color: $grey;
+                    }
+                }
         
                 > img {
                     height: auto;
-                    width: 40px;
+                    width: 30px;
+
+                    @media (min-width: $screen-desktop) {
+                        width: 40px;
+                    }
                 }
         
-                &:hover {
-                    background-color: $grey;
-                }
+                
             }
         }
     }

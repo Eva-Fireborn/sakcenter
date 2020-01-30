@@ -6,7 +6,7 @@ import './footer.scss';
 
 const Footer = () => {
     return (
-        <div className="footer">
+        <footer className="footer">
             <div className="SClogo">
                 <img src={SCLogo} alt="Sakcenter logo" />
             </div>
@@ -33,7 +33,7 @@ const Footer = () => {
                     </a>
                 </div>
             </div>
-        </div>
+        </footer>
     )
 }
 export default Footer;

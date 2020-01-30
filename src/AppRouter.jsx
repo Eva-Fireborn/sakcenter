@@ -18,7 +18,7 @@ const AppRouter = () => {
             <Router>
                 <Header Link={Link} NavLink={NavLink} />
 
-                <div className="content">
+                <main className="content">
                     <Route path="/" exact component={Home} />
                     <Route path="/Om" exact component={About} />
                     <Route path="/Uthyrning" exact component={Information} />
@@ -26,7 +26,7 @@ const AppRouter = () => {
                     <Route path="/Workshop" exact component={Workshops} />
                     <Route path="/Kontakt" exact component={Contact} />
                     <Route path="/Admin" exact component={MainAdmin} />
-                </div>
+                </main>
             </Router>
             <Footer />
         </div>
