@@ -20,7 +20,21 @@
 
         > .mobileMenuButton {
             display: block;
-            height: 45px;
+            height: 50px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+
+            &.-grey {
+                background-color: $grey;
+                animation-name: upperMenuVisible;
+                animation-duration: 1.5s;
+            }
+
+            > img {
+                height: 40px;
+                margin: 10px 10px 0 0;
+            }
 
             @media (min-width: $screen-desktop) {
                 display: none;
@@ -29,52 +43,121 @@
     }
 
     .menuBar {
-        display: none;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        &.-hidden {
+            display: none;
+            animation-name: menuHidden;
+            animation-duration: 0.3s;
+        }
+
+        &.-visible {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: calc(100vh - 50px);
+            top: 50px;
+            background-color: $grey;
+            z-index: 5;
+            animation-name: menuVisible;
+            animation-duration: 1s;
+
+            > .logo {
+                display: none;
+            }
+
+            > li {
+                width: 100%;
+                text-align: center;
+                height: 50px;
+                margin: 40px 0;
+
+                > a {
+                    display: inline-block;
+                    width: 100%;
+                    height: 100%;
+                    font-size: 28px;
+                    line-height: 32px;
+                }
+
+                > a.active {
+                    color: $red;
+                }
+            }
+        }
 
         @media (min-width: $screen-desktop) {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            height: 100%;
+            height: 150px;
+            width: auto;
             display: flex;
-        }
+            position: relative;
 
-        > li {
-            display: block;
-            padding: 0 2em;
-            text-align: center;
+            &.-hidden {
+                display: flex;
+            }
 
-            > a {
-            display: inline-block;
-            padding: 60px 20px 20px;
-            text-decoration: none;
-
-                &:hover {
+            > li {
+                display: block;
+                padding: 0 2em;
+                text-align: center;
+    
+                > a {
+                display: inline-block;
+                padding: 60px 20px 20px;
+                border-radius: 0 0 5px 5px;
+    
+                    &:hover {
+                        background-color: $red;
+                    }
+                }
+    
+                > a.active {
                     background-color: $red;
                 }
             }
-
-            > a.active {
-                background-color: $red;
+            > .logo {
+                padding: 0 5em;
+    
+                > a {
+                    padding: 20px 0 0;
+    
+                    &:hover {
+                        background-color: $red;
+                    }
+    
+                    img {
+                        height: 80px;
+                    }
+                } 
             }
-        }
-
-        > .logo {
-            padding: 0 5em;
-
-            > a {
-                padding: 20px 0 0;
-
-                &:hover {
-                    background-color: $red;
-                }
-
-                img {
-                    height: 80px;
-                }
+            > .homeNav {
+                display: none;
             }
-            
-            
         }
     }
 }
+
+@keyframes menuVisible {
+    from {
+        opacity: 0;
+        left: 100%;
+    }
+    to {
+        opacity: 1;
+        left: 0;
+    }
+}
+
+@keyframes upperMenuVisible {
+    from {
+        background-color: $white;
+        opacity: 0;
+    }
+    to {
+        background-color: $grey;
+        opacity: 1;
+    }
+}
+

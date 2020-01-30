@@ -11,7 +11,7 @@ const ContactCard = ({ name, email, phone, pic }) => {
                 </div>
                 <div className="infoWrapper">
                     <h3>{name}</h3>
-                    <a class="link" href={`mailto:${email}`}>{email}</a>
+                    <a className="link" href={`mailto:${email}`}>{email}</a>
                     {phone && <p>{phone}</p>}
                 </div>
             </div>
