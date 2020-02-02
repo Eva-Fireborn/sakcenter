@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Button from '../reusables/CallToActionButton';
 import API from '../../helperFunctions/ApiCalls';
+import header from '../../img/tygbild-röda-rosor-1920px.jpg';
 import './information.scss';
 
 const Information= () => {
@@ -20,8 +21,11 @@ const Information= () => {
     }
     return (
         <div className="info">
+            <div className="heroImage">
+                <img src={header} alt="tyg med blommor" />
+            </div>
             {content ? (
-                <div className="wrapper" dangerouslySetInnerHTML={createMarkup()}>
+                <div className="textWrapper informationText" dangerouslySetInnerHTML={createMarkup()}>
 
                 </div>
             ) : (<p>Laddar informationen</p>)}

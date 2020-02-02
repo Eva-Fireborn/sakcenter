@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import API from '../../helperFunctions/ApiCalls';
+import header from '../../img/tygbild-blått-med-blommor-1920px.jpg';
 import './gallery.scss';
 
 const Gallery= () => {
@@ -18,9 +19,12 @@ const Gallery= () => {
         return {__html: content}
     }
     return (
-        <div className="info">
+        <div className="gallery">
+            <div className="heroImage">
+                <img src={header} alt="tyg med blommönster" />
+            </div>
             {content ? (
-                <div className="wrapper" dangerouslySetInnerHTML={createMarkup()}>
+                <div className="textWrapper galleryText" dangerouslySetInnerHTML={createMarkup()}>
 
                 </div>
             ) : (<p>Laddar informationen</p>)}

@@ -7,28 +7,24 @@ import './adminWorkshopPage.scss';
 
 const AdminWorkshopPage= () => {
     const [textfieldValue, setTextfield] = useState("<p>Hämtar data</p>");
-    // const updated = true;
+    const [finishedLoading, setLoading] = useState(false);
 
     useEffect(()=> {
-        API.getWorkshopPage(res => {
-            console.log('res: ', res);
-            if (res[0].type === 'pageContent') {
-                setTextfield(res[0].content);
-            }
+        API.getWorkshopPage(result => {
+            result.map( res => {
+                if (res.type === 'pageContent')
+                    setTextfield(res.content);
+            })
+            setLoading(true);
         });
     }, []);
 
     const handleEditorChange = (e) => {
-        console.log(
-            'Content was updated:',
-            e.target.getContent()
-        );
         const newText = e.target.getContent();
         setTextfield(newText);
     }
 
     const sendTextToServer = () => {
-        console.log('detta skickas till api: ', textfieldValue);
         API.updateWorkshopPage(textfieldValue);
     }
 
@@ -39,8 +35,8 @@ const AdminWorkshopPage= () => {
     return (
         <div className="adminWorkshop">
             <div className="editor">
-                <h1>Redigerare för workshop och föreläsningar</h1>
-                <Editor
+                <h1>Redigerare för "workshop och föreläsningar" sidan</h1>
+                {finishedLoading && (<Editor
                     initialValue={textfieldValue}
                     apiKey="f5jieybbly9rmsegf57hjot7vpzs0mo853kko19fs6z2kh82"
                     init={{
@@ -53,12 +49,10 @@ const AdminWorkshopPage= () => {
                             'insertdatetime media table paste wordcount'
                         ],
                         toolbar:
-                            'undo redo | formatselect | bold italic | \
-                            alignleft aligncenter alignright | \
-                            bullist numlist outdent indent | help'
+                            'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | help'
                     }}
                     onChange={handleEditorChange}
-                />
+                />)}
                 <Button buttonText="Spara text" onClick={sendTextToServer}/>
                 <div className="wrapperText" dangerouslySetInnerHTML={createMarkup()}>
 

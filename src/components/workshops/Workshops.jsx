@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import API from '../../helperFunctions/ApiCalls';
+import Pic from '../../img/Liv-Ulfsdottir-workshop.jpg';
 import './workshops.scss';
 
 const Workshops= () => {
@@ -18,10 +19,11 @@ const Workshops= () => {
         return {__html: content}
     }
     return (
-        <div className="info">
+        <div className="workshop">
+            <img src={Pic} alt="test" />
             {content ? (
-                <div className="wrapper" dangerouslySetInnerHTML={createMarkup()}>
-
+                <div className="textWrapper workshopText" dangerouslySetInnerHTML={createMarkup()}>
+                    
                 </div>
             ) : (<p>Laddar informationen</p>)}
         </div>

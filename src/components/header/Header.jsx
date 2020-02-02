@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Logo from '../../img/SC-logo.png';
+import {ReactComponent as CloseCross} from '../../img/closeCross.svg';
 //import LogoWhite from '../../img/SC-logo-white.png';
 import clsx from 'clsx';
 import './header.scss';
@@ -13,12 +14,15 @@ const Header = ({ Link, NavLink }) => {
         <header className="headerBar">
             <nav>
                 <div className={clsx('mobileMenuButton', activeMenu && '-grey')}>
-                    <img src={Logo} alt="Sakcenter logotyp" type="button" onClick={() => displayMenu(activeMenu)}/>
+                    {activeMenu ? (
+                        <CloseCross onClick={displayMenu} type="button" />
+                    ) : (
+                        <img src={Logo} alt="Sakcenter logotyp" type="button" onClick={() => displayMenu(activeMenu)}/>
+                    )}
+                    
+
                 </div>
                 <ul className={clsx('menuBar', activeMenu ? '-visible' : '-hidden')}>
-                    <li className="homeNav">
-                        <Link to="/" onClick={displayMenu}>Hem</Link>
-                    </li>
                     <li>
                         <NavLink to="/Om" onClick={displayMenu}>Om oss</NavLink>
                     </li>

@@ -15,7 +15,7 @@
     .adminHeaderWrapper {
         width: 100%;
         background-color: $blackHalfOp;
-        color: $red;
+        color: $white;
         margin-bottom: 50px;
 
         > h1 {
@@ -26,6 +26,11 @@
             position: relative;
             left: calc(100vw - 150px);
             bottom: 10px;
+            background-color: $red;
+            color: $white;
+            padding: 10px 20px;
+            border: none;
+
         }
     }
 }

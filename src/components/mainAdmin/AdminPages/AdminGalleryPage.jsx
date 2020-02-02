@@ -7,28 +7,24 @@ import './adminGalleryPage.scss';
 
 const AdminGalleryPage= () => {
     const [textfieldValue, setTextfield] = useState("<p>Hämtar data</p>");
-    // const updated = true;
+    const [finishedLoading, setLoading] = useState(false);
 
     useEffect(()=> {
-        API.getGalleryPage(res => {
-            console.log('res: ', res);
-            if (res[0].type === 'pageContent') {
-                setTextfield(res[0].content);
-            }
+        API.getGalleryPage(result => {
+            result.map( res => {
+                if (res.type === 'pageContent')
+                    setTextfield(res.content);
+            })
+            setLoading(true);
         });
     }, []);
 
     const handleEditorChange = (e) => {
-        console.log(
-            'Content was updated:',
-            e.target.getContent()
-        );
         const newText = e.target.getContent();
         setTextfield(newText);
     }
 
     const sendTextToServer = () => {
-        console.log('detta skickas till api: ', textfieldValue);
         API.updateGalleryPage(textfieldValue);
     }
 
@@ -39,8 +35,8 @@ const AdminGalleryPage= () => {
     return (
         <div className="adminInformation">
             <div className="editor">
-                <h1>Redigerare för sortiment</h1>
-                <Editor
+                <h1>Redigerare för "sortiment" sidan</h1>
+                {finishedLoading && (<Editor
                     initialValue={textfieldValue}
                     apiKey="f5jieybbly9rmsegf57hjot7vpzs0mo853kko19fs6z2kh82"
                     init={{
@@ -53,12 +49,10 @@ const AdminGalleryPage= () => {
                             'insertdatetime media table paste wordcount'
                         ],
                         toolbar:
-                            'undo redo | formatselect | bold italic | \
-                            alignleft aligncenter alignright | \
-                            bullist numlist outdent indent | help'
+                            'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | help'
                     }}
                     onChange={handleEditorChange}
-                />
+                />)}
                 <Button buttonText="Spara text" onClick={sendTextToServer}/>
                 <div className="wrapperText" dangerouslySetInnerHTML={createMarkup()}>
 

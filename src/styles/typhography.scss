@@ -64,3 +64,13 @@ li {
     line-height: 20px;
     color: $black;
 }
+
+.textWrapper {
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.textWrapper:first-child {
+    margin-top: 0;
+}

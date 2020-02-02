@@ -1,0 +1,27 @@
+@import '../../styles/variables.scss';
+
+.workshop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    > img {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .workshopText {
+        width: 100%;
+        margin-bottom: $smallPadding;
+        align-self: center;
+
+        @media (min-width: $screen-desktop) {
+            //margin-bottom: $mediumPadding;
+            padding: $mediumPadding;
+            width: 80%;
+            column-count: 2;
+            column-width: 45%;
+            column-gap: $mediumPadding;
+        }
+    }
+}

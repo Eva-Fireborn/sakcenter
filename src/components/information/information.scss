@@ -5,15 +5,39 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: $mediumPadding 0;
+    //padding: $smallPadding;
 
-    .wrapper {
-        width: 60%;
-        background-color: $grey;
-        padding: $mediumPadding;
-        border-radius: $standardBorderRadius;
-        column-count: 2;
-        column-width: 45%;
-        column-gap: $mediumPadding;
+    @media (min-width: $screen-desktop) {
+        //padding: $mediumPadding 100px;
+    }
+
+    .heroImage {
+        width: 100%;
+        height: 175px;
+        overflow: hidden;
+
+        > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    .informationText {
+        width: 100%;
+        //background-color: $grey;
+        padding: $smallPadding;
+        //border-radius: $standardBorderRadius;
+        margin-bottom: $smallPadding;
+
+        @media (min-width: $screen-desktop) {
+            padding: $mediumPadding;
+            //width: 50%;
+            column-count: 2;
+            column-width: 45%;
+            column-gap: $mediumPadding;
+            margin-bottom: $mediumPadding;
+        }
     }
 }

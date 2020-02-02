@@ -3,10 +3,7 @@
 .headerBar {
     height: 50px;
     width: 100%;
-    /*grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 2;*/
+
     @media (min-width: $screen-desktop) {
         height: 150px;
     }
@@ -26,9 +23,15 @@
             justify-content: flex-end;
 
             &.-grey {
-                background-color: $grey;
+                background-color: $black;
                 animation-name: upperMenuVisible;
-                animation-duration: 1.5s;
+                animation-duration: 1s;
+
+                > svg {
+                    height: 30px;
+                    margin: 10px 10px 0 0;
+                    fill: $white;
+                }
             }
 
             > img {
@@ -47,10 +50,9 @@
         margin: 0;
         padding: 0;
 
+
         &.-hidden {
             display: none;
-            animation-name: menuHidden;
-            animation-duration: 0.3s;
         }
 
         &.-visible {
@@ -58,11 +60,11 @@
             position: absolute;
             width: 100%;
             height: calc(100vh - 50px);
-            top: 50px;
-            background-color: $grey;
+            top: 49px;
+            background-color: $black;
             z-index: 5;
             animation-name: menuVisible;
-            animation-duration: 1s;
+            animation-duration: 0.8s;
 
             > .logo {
                 display: none;
@@ -71,7 +73,6 @@
             > li {
                 width: 100%;
                 text-align: center;
-                height: 50px;
                 margin: 40px 0;
 
                 > a {
@@ -80,6 +81,8 @@
                     height: 100%;
                     font-size: 28px;
                     line-height: 32px;
+                    color: $white;
+                    letter-spacing: 3px;
                 }
 
                 > a.active {
@@ -110,11 +113,13 @@
     
                     &:hover {
                         background-color: $red;
+                        color: $white;
                     }
                 }
     
                 > a.active {
                     background-color: $red;
+                    color: $white;
                 }
             }
             > .logo {
@@ -132,9 +137,6 @@
                     }
                 } 
             }
-            > .homeNav {
-                display: none;
-            }
         }
     }
 }
@@ -151,12 +153,20 @@
 }
 
 @keyframes upperMenuVisible {
-    from {
+    0% {
         background-color: $white;
         opacity: 0;
     }
-    to {
-        background-color: $grey;
+    50% {
+        background-color: $white;
+        opacity: 0;
+    }
+    75% {
+        background-color: $white;
+        opacity: 1;
+    }
+    100% {
+        background-color: $black;
         opacity: 1;
     }
 }

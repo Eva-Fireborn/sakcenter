@@ -25,7 +25,7 @@ const About = () => {
     return (
         <div className="about main">
             {content ? (
-                <div className="wrapper" dangerouslySetInnerHTML={createMarkup()}>
+                <div className="textWrapper aboutText" dangerouslySetInnerHTML={createMarkup()}>
 
                 </div>
             ) : (<p>Laddar informationen</p>)}
