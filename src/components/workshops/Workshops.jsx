@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import API from '../../helperFunctions/ApiCalls';
-import Pic from '../../img/Liv-Ulfsdottir-workshop.jpg';
+import header from '../../img/tygbild-grönt-med-blommor-1920px.jpg';
 import './workshops.scss';
 
 const Workshops= () => {
@@ -20,7 +20,9 @@ const Workshops= () => {
     }
     return (
         <div className="workshop">
-            <img src={Pic} alt="test" />
+            <div className="heroImage">
+                <img src={header} alt="tyg med blommor" />
+            </div>
             {content ? (
                 <div className="textWrapper workshopText" dangerouslySetInnerHTML={createMarkup()}>
                     

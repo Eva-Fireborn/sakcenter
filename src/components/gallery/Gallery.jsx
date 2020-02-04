@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import API from '../../helperFunctions/ApiCalls';
-import header from '../../img/tygbild-blått-med-blommor-1920px.jpg';
+import largeHeader from '../../img/tygbild-grön-bakgrund-1920px.jpg';
+import mediumHeader from '../../img/tygbild-grön-bakgrund-780px.jpg';
+import smallHeader from '../../img/tygbild-grön-bakgrund-380px.jpg';
 import './gallery.scss';
 
 const Gallery= () => {
@@ -21,7 +23,12 @@ const Gallery= () => {
     return (
         <div className="gallery">
             <div className="heroImage">
-                <img src={header} alt="tyg med blommönster" />
+                <picture>
+                    <source media="(max-width: 380px)" srcSet={smallHeader}/>
+                    <source media="(max-width: 780px)" srcSet={mediumHeader}/>
+                    <source media="(min-width: 780px)" srcSet={largeHeader}/>
+                    <img src={largeHeader} alt="tyg med blommönster" />
+                </picture>
             </div>
             {content ? (
                 <div className="textWrapper galleryText" dangerouslySetInnerHTML={createMarkup()}>

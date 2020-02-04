@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import API from '../../helperFunctions/ApiCalls';
-import PicBags from '../../img/väskor.jpg';
-import PicMummy from '../../img/mumie.jpg';
+import Lamps from '../../img/lampor.jpg';
+import Police from '../../img/polis-rekvisita-2.jpg';
 import PicToys from '../../img/leksaker.jpg';
-import PicLamps from '../../img/lampor.jpg';
+import EpokPic from '../../img/epok-förpackningar.jpg';
+import header from '../../img/tygbild-blommor-1920px.jpg';
 import './about.scss';
 
 const About = () => {
@@ -24,6 +25,9 @@ const About = () => {
 
     return (
         <div className="about main">
+            <div className="heroImage">
+                <img src={header} alt="tyg med blommor" />
+            </div>
             {content ? (
                 <div className="textWrapper aboutText" dangerouslySetInnerHTML={createMarkup()}>
 
@@ -33,21 +37,21 @@ const About = () => {
                 <div className="upperBlock">
                     <div className="largeImageBlock">
                         <div className="imageOverlay" />
-                        <img src={PicBags} alt="Hylla med väskor" />
+                        <img src={EpokPic} alt="Hylla med väskor" />
                     </div>
                     <div className="smallImageBlock right">
                         <div className="imageOverlay small" />
-                        <img className="mummy" src={PicMummy} alt="Sarkofag med mumie" />
+                        <img className="mummy" src={Police} alt="Sarkofag med mumie" />
                     </div>
                 </div>
                 <div className="bottomBlock">
                 <div className="smallImageBlock left">
                     <div className="imageOverlay small rightPosition" />
-                        <img className="toys" src={PicToys} alt="Leksaker" />
+                        <img className="toys" src={Lamps} alt="Leksaker" />
                     </div>
                     <div className="largeImageBlock">
                         <div className="imageOverlay" />
-                        <img className="bookshelf" src={PicLamps} alt="Lampor" />
+                        <img className="bookshelf" src={PicToys} alt="Lampor" />
                     </div>
                 </div>
             </div>

@@ -12,6 +12,21 @@
         //padding: $mediumPadding 100px;
     }
 
+    .heroImage {
+        width: 100%;
+        height: 175px;
+        overflow: hidden;
+        border-radius: $standardBorderRadius;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
     .aboutText {
         width: 100%;
         //background-color: $white;
@@ -49,6 +64,7 @@
                 overflow: hidden;
                 position: relative;
                 margin: 5px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
                 @media (min-width: $screen-desktop) {
                     margin: 2px;
@@ -68,6 +84,7 @@
                 height: 60%;
                 position: relative;
                 margin: 5px;
+                
 
                 @media (min-width: $screen-desktop) {
                     margin: 2px;
@@ -78,6 +95,7 @@
                     height: 100%;
                     object-fit: cover;
                     object-position: center;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
                     @media (min-width: $screen-desktop) {
                         width: 50%;
@@ -101,7 +119,7 @@
                 height: 100%;
                 background-color: $grey;
                 z-index: 2;
-                opacity: 0.1;
+                opacity: 0.2;
             }
 
             .small {
