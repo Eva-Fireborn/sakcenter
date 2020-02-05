@@ -79,10 +79,6 @@
                     display: inline-block;
                     width: 100%;
                     height: 100%;
-                    font-size: 28px;
-                    line-height: 32px;
-                    color: $white;
-                    letter-spacing: 3px;
                 }
 
                 > a.active {
@@ -114,6 +110,7 @@
                     &:hover {
                         background-color: $red;
                         color: $white;
+                        transition: background-color $standardTransitionTime, color $standardTransitionTime;
                     }
                 }
     
@@ -130,6 +127,7 @@
     
                     &:hover {
                         background-color: $red;
+                        transition: background-color $standardTransitionTime;
                     }
     
                     img {

@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import Logo from '../../img/SC-logo.png';
 import {ReactComponent as CloseCross} from '../../img/closeCross.svg';
-//import LogoWhite from '../../img/SC-logo-white.png';
 import clsx from 'clsx';
 import './header.scss';
 
@@ -19,8 +18,6 @@ const Header = ({ Link, NavLink }) => {
                     ) : (
                         <img src={Logo} alt="Sakcenter logotyp" type="button" onClick={() => displayMenu(activeMenu)}/>
                     )}
-                    
-
                 </div>
                 <ul className={clsx('menuBar', activeMenu ? '-visible' : '-hidden')}>
                     <li>

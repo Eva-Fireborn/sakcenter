@@ -50,11 +50,18 @@ button {
 
 .menuBar > li > a {
     font-family: PTF;
-    font-size: 18px;
-    line-height: 22px;
-    letter-spacing: .5px;
-    color: $black;
+    font-size: 28px;
+    line-height: 32px;
+    color: $white;
     font-weight: bold;
+    letter-spacing: 2px;
+
+    @media (min-width: $screen-desktop) {
+        font-size: 20px;
+        line-height: 22px;
+        color: $black;
+        letter-spacing: 1px;
+    }
 }
 
 li {
