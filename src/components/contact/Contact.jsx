@@ -2,9 +2,9 @@ import React from 'react';
 import ContactCard from './ContactCard';
 import Exempelbild from '../../img/exempelbild.jpg';
 import SClogo from '../../img/SAKCENTER_LOGO_bw_2013.png';
-import largeHeader from '../../img/tygbild-brunt-1920px.jpg';
-import mediumHeader from '../../img/tygbild-brunt-1920px.jpg';
-import smallHeader from '../../img/tygbild-brunt-1920px.jpg';
+import largeHeader from '../../img/tygbild-gul-lila-mönster-1920px.jpg';
+import mediumHeader from '../../img/tygbild-gul-lila-mönster-780px.jpg';
+import smallHeader from '../../img/tygbild-gul-lila-mönster-380px.jpg';
 import './contact.scss';
 
 const Contact= () => {

@@ -5,35 +5,87 @@
     flex-direction: column;
     justify-content: center;
 
-    .heroImage {
-        background-color: black;
-        width: 100%;
-        height: 75px;
-        overflow: hidden;
-        border-radius: $standardBorderRadius;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    .heroImageSakcenter {
+        display: none;
 
         @media (min-width: $screen-desktop) {
-            height: 175px;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
         }
 
         img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
+            display: none;
+
+            @media (min-width: $screen-desktop) {
+                display: block;
+                width: 730px;
+                height: auto;
+                object-fit: cover;
+                object-position: center;
+                transform: rotate(-0.4deg);
+            }
         }
     }
 
-    .galleryText {
+    .mainGallery {
+        display: flex;
+        flex-direction: column;
         width: 100%;
-        margin-bottom: $smallPadding;
-        align-self: center;
 
         @media (min-width: $screen-desktop) {
-            //margin-bottom: $mediumPadding;
-            padding: $mediumPadding;
-            width: 80%;
+            flex-direction: row-reverse;
+        }
+
+        .productImg {
+            width: 500px;
+            height: 500px;
+            margin-bottom: $smallPadding;
+            background-color: black;
+            color: white;
+
+            @media (min-width: $screen-desktop) {
+                //margin-bottom: $mediumPadding;
+                padding: $mediumPadding;
+                width: 50%;
+            }
+        }
+
+        .galleryText {
+            width: 100%;
+            margin-bottom: $smallPadding;
+    
+            @media (min-width: $screen-desktop) {
+                //margin-bottom: $mediumPadding;
+                padding: 0 $mediumPadding;
+                flex: 1;
+            }
+        }
+    }
+
+    .instagramPosts {
+        display: flex;
+        flex-direction: column;
+
+        @media (min-width: $screen-desktop) {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .instagramHeader {
+            border-top: 1px solid $brown;
+            width: 100%;
+            margin: 100px 0 50px;
+            text-align: center;
+        }
+
+        .instagramPost {
+            width: 320px;
+            overflow: hidden;
+            margin: 0 50px;
         }
     }
 }

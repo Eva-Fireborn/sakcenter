@@ -1,5 +1,5 @@
 import React from 'react';
-import SCpic from '../../img/lampcenterRek.jpg';
+import SCpic from '../../img/sakcenter-rullande-logo.gif';
 import './home.scss';
 
 const Home= () => {

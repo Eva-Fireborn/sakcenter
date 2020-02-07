@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .homeWrapper {
-    height: calc(100vh - 90px);
+    height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -9,16 +9,32 @@
     overflow: hidden;
 
     @media(min-width: $screen-desktop) {
-        height: calc(100vh - 190px);
+        height: calc(100vh - 200px);
     }
 
     .mainPic {
-        height: 50px;
-        margin-top: 200px;
+        width: 300px;
+        height: calc(300px / 1.7);
+        align-self: center;
+
+        @media(min-width: 600px) {
+            width: 500px;
+            height: calc(500px / 1.7);
+        }
 
         @media(min-width: $screen-desktop) {
-            height: 200px;
-            margin-top: 200px;
+            width: 900px;
+            height: calc(900px / 1.7);
+        }
+
+        @media(min-width: 1200px) {
+            width: 1200px;
+            height: calc(1200px / 1.7);
+        }
+
+        @media(min-width: 1800px) {
+            width: 1920px;
+            height: 1080px;
         }
     }
 }

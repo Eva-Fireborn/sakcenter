@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Instagram from './Instagram';
 import API from '../../helperFunctions/ApiCalls';
-import largeHeader from '../../img/tygbild-gul-lila-mönster-1920px.jpg';
-import mediumHeader from '../../img/tygbild-gul-lila-mönster-780px.jpg';
-import smallHeader from '../../img/tygbild-gul-lila-mönster-380px.jpg';
+import sakcenterPic from '../../img/överblicksbild-av-sakcenter1000px.png';
 import './gallery.scss';
 
 const Gallery= () => {
@@ -12,10 +10,11 @@ const Gallery= () => {
 
     useEffect(()=> {
         API.getGalleryPage(res => {
-            console.log('res: ', res);
-            if (res[0].type === 'pageContent') {
-                setContent(res[0].content);
-            }
+            res.forEach(content => {
+                if (content.type === 'pageContent') {
+                    setContent(content.content);
+                }
+            })
         });
         const instagramresponse = [];
         API.getInstagramPosts(result => {
@@ -32,27 +31,35 @@ const Gallery= () => {
     }
     return (
         <div className="gallery">
-            <div className="heroImage">
-                <picture>
-                    <source media="(max-width: 380px)" srcSet={smallHeader}/>
-                    <source media="(max-width: 780px)" srcSet={mediumHeader}/>
-                    <source media="(min-width: 780px)" srcSet={largeHeader}/>
-                    <img src={largeHeader} alt="tyg med blommönster" />
-                </picture>
+            <div className="heroImageSakcenter">
+                <img src={sakcenterPic} alt="Överblick av Sakcenter" />
             </div>
-            {content ? (
-                <div className="textWrapper galleryText" dangerouslySetInnerHTML={createMarkup()}>
+            <div className="mainGallery">
 
-                </div>
-            ) : (<p>Laddar informationen</p>)}
-            <div>
-                {instagramPosts && instagramPosts.length && (
-                    instagramPosts.map((post, index) => {
-                        return <Instagram key={index} URL={post.link} />
-                    })
+                {content ? (
+                    <div className="textWrapper galleryText" dangerouslySetInnerHTML={createMarkup()}>
+
+                    </div>
+                ) : (
+                    <div className="textWrapper galleryText">
+                        <p>Laddar informationen</p>
+                    </div>
                 )}
+                
+                <div className="productImg">
+                    Bild på Dirty down + Sticky stuff
+                </div>
             </div>
-            
+                {instagramPosts && instagramPosts.length && (
+                    <div className="instagramPosts">
+                        <div className="instagramHeader">
+                            <h3>För att se fler bilder på förrådet besök vår Instagram</h3>
+                        </div>
+                        {instagramPosts.map((post, index) => {
+                            return <div className="instagramPost"><Instagram key={index} URL={post.link} /></div>
+                        })}
+                    </div>
+                )}
         </div>
     )
 }

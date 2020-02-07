@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .headerBar {
-    height: 50px;
+    height: 0;
     width: 100%;
 
     @media (min-width: $screen-desktop) {
@@ -17,6 +17,9 @@
 
         > .mobileMenuButton {
             display: block;
+            position: absolute;
+            top: 10px;
+            right: 10px;
             height: 50px;
             width: 100%;
             display: flex;
@@ -26,6 +29,8 @@
                 background-color: $black;
                 animation-name: upperMenuVisible;
                 animation-duration: 1s;
+                top: 0;
+                right: 0;
 
                 > svg {
                     height: 30px;

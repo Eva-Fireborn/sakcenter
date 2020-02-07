@@ -11,10 +11,11 @@ const Information= () => {
 
     useEffect(()=> {
         API.getInformationPage(res => {
-            console.log('res: ', res);
-            if (res[0].type === 'pageContent') {
-                setContent(res[0].content);
-            }
+            res.forEach(content => {
+                if (content.type === 'pageContent') {
+                    setContent(content.content);
+                }
+            })
         });
     }, []);
 

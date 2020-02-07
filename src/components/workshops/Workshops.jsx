@@ -8,10 +8,11 @@ const Workshops= () => {
 
     useEffect(()=> {
         API.getWorkshopPage(res => {
-            console.log('res: ', res);
-            if (res[0].type === 'pageContent') {
-                setContent(res[0].content);
-            }
+            res.forEach(content => {
+                if (content.type === 'pageContent') {
+                    setContent(content.content);
+                }
+            })
         });
     }, []);
 
