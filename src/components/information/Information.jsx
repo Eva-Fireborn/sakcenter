@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Button from '../reusables/CallToActionButton';
 import API from '../../helperFunctions/ApiCalls';
-import header from '../../img/tygbild-röda-rosor-1920px.jpg';
+import largeHeader from '../../img/tygbild-röda-rosor-1920px.jpg';
+import mediumHeader from '../../img/tygbild-röda-rosor-780px.jpg';
+import smallHeader from '../../img/tygbild-röda-rosor-380px.jpg';
 import './information.scss';
 
 const Information= () => {
@@ -22,7 +24,12 @@ const Information= () => {
     return (
         <div className="info">
             <div className="heroImage">
-                <img src={header} alt="tyg med blommor" />
+            <picture>
+                <source media="(max-width: 380px)" srcSet={smallHeader}/>
+                <source media="(max-width: 780px)" srcSet={mediumHeader}/>
+                <source media="(min-width: 780px)" srcSet={largeHeader}/>
+                <img src={largeHeader} alt="tyg med blommönster" />
+            </picture>
             </div>
             {content ? (
                 <div className="textWrapper informationText" dangerouslySetInnerHTML={createMarkup()}>

@@ -11,7 +11,7 @@ const AdminWorkshopPage= () => {
 
     useEffect(()=> {
         API.getWorkshopPage(result => {
-            result.map( res => {
+            result.forEach( res => {
                 if (res.type === 'pageContent')
                     setTextfield(res.content);
             })

@@ -34,6 +34,27 @@ function getGalleryPage(callback) {
     .catch(err => console.log(err))
 }
 
+function getInstagramPosts(callback) {
+    axios.get(`${url}/APIgetInstagramPosts`)
+    .then(data => {
+        callback(data.data.body);
+    })
+    .catch(err => console.log(err))
+}
+
+function updateInstagramPosts(newContent, callback) {
+    console.log('sending: ', newContent);
+    axios({
+        method: 'post',
+        url: `${url}/APInewInstagramPost`,
+        data: {
+            newContent
+        }
+    })
+    .then(data => callback(data))
+    .catch(err => console.log(err))
+}
+
 function updateAboutPage(newContent) {
     console.log('sending: ', newContent);
     axios({
@@ -86,6 +107,19 @@ function updateGalleryPage(newContent) {
     .catch(err => console.log(err))
 }
 
+function login(password, response) {
+    console.log('sending: ', password);
+    axios({
+        method: 'post',
+        url: `${url}/APIlogin`,
+        data: {
+            password
+        }
+    })
+    .then(data => response(data))
+    .catch(err => console.log(err))
+}
+
 export default{
     getAboutPage,
     updateAboutPage,
@@ -94,6 +128,9 @@ export default{
     getInformationPage,
     updateInformationPage,
     getGalleryPage,
-    updateGalleryPage
+    updateGalleryPage,
+    login,
+    getInstagramPosts,
+    updateInstagramPosts
 };
 

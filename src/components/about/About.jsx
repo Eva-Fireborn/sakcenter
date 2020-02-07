@@ -4,7 +4,9 @@ import Lamps from '../../img/lampor.jpg';
 import Police from '../../img/polis-rekvisita-2.jpg';
 import PicToys from '../../img/leksaker.jpg';
 import EpokPic from '../../img/epok-förpackningar.jpg';
-import header from '../../img/tygbild-blommor-1920px.jpg';
+import largeHeader from '../../img/tygbild-blommor-1920px.jpg';
+import mediumHeader from '../../img/tygbild-blommor-780px.jpg';
+import smallHeader from '../../img/tygbild-blommor-380px.jpg';
 import './about.scss';
 
 const About = () => {
@@ -26,7 +28,12 @@ const About = () => {
     return (
         <div className="about main">
             <div className="heroImage">
-                <img src={header} alt="tyg med blommor" />
+            <picture>
+                <source media="(max-width: 380px)" srcSet={smallHeader}/>
+                <source media="(max-width: 780px)" srcSet={mediumHeader}/>
+                <source media="(min-width: 780px)" srcSet={largeHeader}/>
+                <img src={largeHeader} alt="tyg med blommönster" />
+            </picture>
             </div>
             {content ? (
                 <div className="textWrapper aboutText" dangerouslySetInnerHTML={createMarkup()}>

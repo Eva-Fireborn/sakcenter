@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
+import Instagram from './Instagram';
 import API from '../../helperFunctions/ApiCalls';
-import largeHeader from '../../img/tygbild-grön-bakgrund-1920px.jpg';
-import mediumHeader from '../../img/tygbild-grön-bakgrund-780px.jpg';
-import smallHeader from '../../img/tygbild-grön-bakgrund-380px.jpg';
+import largeHeader from '../../img/tygbild-gul-lila-mönster-1920px.jpg';
+import mediumHeader from '../../img/tygbild-gul-lila-mönster-780px.jpg';
+import smallHeader from '../../img/tygbild-gul-lila-mönster-380px.jpg';
 import './gallery.scss';
 
 const Gallery= () => {
     const [content, setContent] = useState(null);
+    const [instagramPosts, setInstagramPosts] = useState(null);
 
     useEffect(()=> {
         API.getGalleryPage(res => {
@@ -15,6 +17,14 @@ const Gallery= () => {
                 setContent(res[0].content);
             }
         });
+        const instagramresponse = [];
+        API.getInstagramPosts(result => {
+            result.forEach( res => {
+                instagramresponse.unshift(res);
+                console.log('list: ', instagramresponse)
+            })
+            setInstagramPosts(instagramresponse);
+        })
     }, []);
 
     const createMarkup = () => {
@@ -35,6 +45,14 @@ const Gallery= () => {
 
                 </div>
             ) : (<p>Laddar informationen</p>)}
+            <div>
+                {instagramPosts && instagramPosts.length && (
+                    instagramPosts.map((post, index) => {
+                        return <Instagram key={index} URL={post.link} />
+                    })
+                )}
+            </div>
+            
         </div>
     )
 }

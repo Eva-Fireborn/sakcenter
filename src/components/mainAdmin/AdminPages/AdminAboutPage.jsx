@@ -11,7 +11,7 @@ const AdminAboutPage= () => {
 
     useEffect(()=> {
         API.getAboutPage(result => {
-            result.map( res => {
+            result.forEach( res => {
                 if (res.type === 'pageContent')
                     setTextfield(res.content);
             })

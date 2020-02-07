@@ -10,7 +10,10 @@ const {
 	retrieveInformationPage,
 	updateInformationPage,
 	retrieveGalleryPage,
-	updateGalleryPage
+	updateGalleryPage,
+	retrievePassword,
+	retrieveInstagramPosts,
+	updateInstagramPosts
  } = require('./backend.js');
 const bodyParser = require('body-parser')
 expServer.use(
@@ -64,6 +67,25 @@ expServer.get('/APIretrieveGallery', (request, response) => {
 	})
 });
 
+expServer.get('/APIgetInstagramPosts', (request, response) => {
+	retrieveInstagramPosts(result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
+
+expServer.post('/APInewInstagramPost', (request, response) => {
+    console.log('req body: ', request.body.newContent);
+	updateInstagramPosts(request.body.newContent, result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
+
 expServer.post('/APIpostAbout', (request, response) => {
     console.log('req body: ', request.body);
 	updateAboutPage(request.body.newContent, result => {
@@ -97,6 +119,16 @@ expServer.post('/APIpostInformation', (request, response) => {
 expServer.post('/APIpostGallery', (request, response) => {
     console.log('req body: ', request.body);
 	updateGalleryPage(request.body.newContent, result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
+
+expServer.post('/APIlogin', (request, response) => {
+    console.log('req body: ', request.body);
+	retrievePassword(request.body.password, result => {
 		response.send({
 			status: 200,
 			body: result

@@ -1,3 +1,5 @@
+
+
 function connectToDB(callback) {
     const mysql = require('mysql');
     const connection = mysql.createConnection({
@@ -12,8 +14,8 @@ function connectToDB(callback) {
       callback(connection);
   })
 }
-/*
-    const mysql = require('mysql');
+
+  /* const mysql = require('mysql');
     const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -26,19 +28,64 @@ function connectToDB(callback) {
       //callback(connection);
   })
   
-  connection.query('CREATE TABLE galleryPage (id INT AUTO_INCREMENT PRIMARY KEY, type VARCHAR(255), content TEXT)', function (err, result) {
+  connection.query('CREATE TABLE instagram (id INT AUTO_INCREMENT PRIMARY KEY, link VARCHAR(255), description VARCHAR(255))', function (err, result) {
       if (err) throw err;
       console.log('Table created: ', result);
       connection.end()
   })
   
 
-  const sql = "INSERT INTO galleryPage (type, content) VALUES ('pageContent', '<h1>Sortiment</h1>')";
+   const sql = "INSERT INTO instagram (link, description) VALUES ('https://www.instagram.com/p/BfatBEXh_dW/', 'Sarkofag')";
   connection.query(sql, function (err, result) {
       if (err) throw err;
       console.log('Inserted: ', result);
       connection.end()
   })*/
+
+  function retrievePassword(userPassword, callback) {
+    console.log('userPassword: ', userPassword);
+    const hash = require('object-hash');
+    const salt = 'vd%.>W6Y6KGAF>sb6RdfN';
+    const newPassword = hash(salt+userPassword);
+    console.log('newPassword: ', newPassword);
+    connectToDB(connection => {
+      // const sql = `INSERT INTO admin (type, content) VALUES ('password', '${newPassword}')`
+      connection.query("SELECT * FROM admin WHERE type = 'password'", function (err, result, fields) {
+        if (err) {
+          connection.end()
+          throw err;
+        }
+        let loggedIn = false;
+        if (result) {
+          result.forEach(res => {
+            if (newPassword === res.content) {
+              console.log('Rätt lösenord');
+              loggedIn = true;
+            }
+          });
+        callback(loggedIn);
+        connection.end()
+        }
+      })
+    })
+  }
+
+  function retrieveInstagramPosts(callback) {
+    connectToDB(connection => {
+      connection.query("SELECT * FROM instagram", function (err, result) {
+        if (err) {
+          connection.end()
+          throw err;
+        }
+
+        if (result) {
+          console.log('result: ', result);
+          callback(result);
+        connection.end()
+        }
+      })
+    })
+  }
 
   function retrieveAboutPage(callback) {
     connectToDB(connection => {
@@ -187,6 +234,26 @@ function connectToDB(callback) {
       })
     })
   }
+  
+  function updateInstagramPosts(newContent, response) {
+    console.log('newContent: ', newContent);
+
+    const request =  `INSERT INTO instagram (link, description) VALUES ('${newContent.link}', '${newContent.description}')`;
+
+    connectToDB(connection => {
+      connection.query(request, function (err, result) {
+        if (err) {
+          connection.end()
+          throw err;
+        }
+        if (result) {
+          console.log('result: ', result);
+          response(result);
+        connection.end()
+        }
+      })
+    })
+  }
 
 module.exports = {
   retrieveAboutPage,
@@ -196,6 +263,9 @@ module.exports = {
   retrieveInformationPage,
   updateInformationPage,
   retrieveGalleryPage,
-  updateGalleryPage
+  updateGalleryPage,
+  retrievePassword,
+  retrieveInstagramPosts,
+  updateInstagramPosts
 };
 

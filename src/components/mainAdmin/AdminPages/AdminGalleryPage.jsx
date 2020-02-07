@@ -8,16 +8,32 @@ import './adminGalleryPage.scss';
 const AdminGalleryPage= () => {
     const [textfieldValue, setTextfield] = useState("<p>Hämtar data</p>");
     const [finishedLoading, setLoading] = useState(false);
+    const [instagramPosts, setInstagramPosts] = useState(null);
+    const [instaLinkInput, setInputLinkValue] = useState('');
+    const [instaDescInput, setInputDescValue] = useState('');
 
     useEffect(()=> {
         API.getGalleryPage(result => {
-            result.map( res => {
+            result.forEach( res => {
                 if (res.type === 'pageContent')
                     setTextfield(res.content);
             })
             setLoading(true);
         });
+        updateInstagramPosts();
     }, []);
+
+
+    const updateInstagramPosts = () => {
+        const instagramresponse = [];
+        API.getInstagramPosts(result => {
+            result.forEach( res => {
+                instagramresponse.push(res);
+                console.log('list: ', instagramresponse)
+            })
+            setInstagramPosts(instagramresponse);
+        })
+    }
 
     const handleEditorChange = (e) => {
         const newText = e.target.getContent();
@@ -30,6 +46,27 @@ const AdminGalleryPage= () => {
 
     const createMarkup = () => {
         return {__html: textfieldValue}
+    }
+
+    const updateLinkInput = (e) => {
+        setInputLinkValue(e.target.value);
+        console.log(e.target.value);
+    }
+
+    const updateDescInput = (e) => {
+        setInputDescValue(e.target.value);
+        console.log(e.target.value);
+    }
+    const updateNewInstagramPost = () => {
+        const newPost = {
+            link: instaLinkInput,
+            description: instaDescInput
+        };
+        console.log(newPost);
+        API.updateInstagramPosts(newPost, result => {
+            console.log(result);
+            updateInstagramPosts();
+        });
     }
 
     return (
@@ -56,6 +93,22 @@ const AdminGalleryPage= () => {
                 <Button buttonText="Spara text" onClick={sendTextToServer}/>
                 <div className="wrapperText" dangerouslySetInnerHTML={createMarkup()}>
 
+                </div>
+            </div>
+            <div className="InstagramEditor">
+                {instagramPosts && instagramPosts.length && (
+                    <ul>
+                        {instagramPosts.map((post, index) => {
+                        return <li key={index}>{post.description} <span>({post.link})</span> </li>
+                        })}
+                    </ul>
+                )}
+                <div className="addNewInstagramPost">
+                    <p>Länk till Instagrambild, ex https://www.instagram.com/p/BfatBEXh_dW/</p>
+                    <input type="text" onChange={updateLinkInput} value={instaLinkInput} />
+                    <p>Beskrivning av bilden, ex Lampfötter</p>
+                    <input type="text" onChange={updateDescInput} value={instaDescInput} />
+                    <Button buttonText='Spara inlägg' onClick={updateNewInstagramPost} />
                 </div>
             </div>
         </div>
