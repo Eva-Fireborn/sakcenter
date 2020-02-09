@@ -12,14 +12,18 @@
     "eslint": "^6.8.0",
     "express": "^4.17.1",
     "jodit": "^3.3.14",
+    "moment": "^2.24.0",
     "mysql": "^2.17.1",
     "node-sass": "^4.13.0",
     "object-hash": "^2.0.1",
     "react": "^16.12.0",
+    "react-date-picker": "^7.10.0",
     "react-dom": "^16.12.0",
+    "react-hooks-global-state": "^1.0.0-alpha.2",
     "react-instagram-embed": "^1.5.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.0"
+    "react-scripts": "3.3.0",
+    "react-ticker": "^1.2.2"
   },
   "scripts": {
     "start": "react-scripts start",

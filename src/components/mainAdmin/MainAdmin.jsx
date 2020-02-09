@@ -3,6 +3,7 @@ import AdminAboutPage from './AdminPages/AdminAboutPage';
 import AdminWorkshopPage from './AdminPages/AdminWorkshopPage';
 import AdminInformationPage from './AdminPages/AdminInformationPage';
 import AdminGalleryPage from './AdminPages/AdminGalleryPage';
+import AdminNewsPage from './AdminPages/AdminNewsPage';
 import Hash from 'object-hash';
 import API from '../../helperFunctions/ApiCalls';
 import Button from '../reusables/CallToActionButton';
@@ -36,6 +37,18 @@ const MainAdmin= () => {
         setLoggedIn(false);
     }
 
+    /*const keydown = (e) => {
+        console.log('inputvalue: ', inputValue);
+        if(e.key === "Enter") {
+            setTimeout(sendPassword, 3000);
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('keydown', keydown);
+        return () => window.addEventListener('keydown', keydown);
+    }, []);*/
+
     return(
         <div className="mainAdminWrapper">
         {loggedIn ? (
@@ -49,11 +62,13 @@ const MainAdmin= () => {
                 <li><button onClick={() => setIndex(1)}>Redigera "Workshops och föreläsningar"</button></li>
                 <li><button onClick={() => setIndex(2)}>Redigera "Uthyrning"</button></li>
                 <li><button onClick={() => setIndex(3)}>Redigera "Sortiment"</button></li>
+                <li><button onClick={() => setIndex(4)}>Redigera "Viktig nyhet"</button></li>
             </ul>
             {index === 0 ? (<AdminAboutPage />) : (null)}
             {index === 1 ? (<AdminWorkshopPage />) : (null)}
             {index === 2 ? (<AdminInformationPage />) : (null)}
             {index === 3 ? (<AdminGalleryPage />) : (null)}
+            {index === 4 ? (<AdminNewsPage />) : (null)}
             </>
         ) : (
             <div className="logInWindow">

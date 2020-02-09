@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect } from 'react';
+import { useGlobalState } from '../../helperFunctions/GlobalState';
 import Button from '../reusables/CallToActionButton';
 import API from '../../helperFunctions/ApiCalls';
 import largeHeader from '../../img/tygbild-röda-rosor-1920px.jpg';
@@ -7,16 +8,18 @@ import smallHeader from '../../img/tygbild-röda-rosor-380px.jpg';
 import './information.scss';
 
 const Information= () => {
-    const [content, setContent] = useState(null);
+    const [content, setContent] = useGlobalState('contentInformationPage');
 
     useEffect(()=> {
-        API.getInformationPage(res => {
-            res.forEach(content => {
-                if (content.type === 'pageContent') {
-                    setContent(content.content);
-                }
-            })
-        });
+        if (!content) {
+            API.getInformationPage(res => {
+                res.forEach(content => {
+                    if (content.type === 'pageContent') {
+                        setContent(content.content);
+                    }
+                })
+            });
+        }   
     }, []);
 
     const createMarkup = () => {

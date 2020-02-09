@@ -1,29 +1,33 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect } from 'react';
+import { useGlobalState } from '../../helperFunctions/GlobalState';
 import Instagram from './Instagram';
 import API from '../../helperFunctions/ApiCalls';
 import sakcenterPic from '../../img/överblicksbild-av-sakcenter1000px.png';
 import './gallery.scss';
 
 const Gallery= () => {
-    const [content, setContent] = useState(null);
-    const [instagramPosts, setInstagramPosts] = useState(null);
+    const [content, setContent] = useGlobalState('contentGalleryPage');
+    const [instagramPosts, setInstagramPosts] = useGlobalState('instagramPosts');
 
     useEffect(()=> {
-        API.getGalleryPage(res => {
-            res.forEach(content => {
-                if (content.type === 'pageContent') {
-                    setContent(content.content);
-                }
+        if (!content) {
+            API.getGalleryPage(res => {
+                res.forEach(content => {
+                    if (content.type === 'pageContent') {
+                        setContent(content.content);
+                    }
+                })
+            });
+        }
+        if(!instagramPosts){
+            const instagramresponse = [];
+            API.getInstagramPosts(result => {
+                result.forEach( res => {
+                    instagramresponse.unshift(res);
+                })
+                setInstagramPosts(instagramresponse);
             })
-        });
-        const instagramresponse = [];
-        API.getInstagramPosts(result => {
-            result.forEach( res => {
-                instagramresponse.unshift(res);
-                console.log('list: ', instagramresponse)
-            })
-            setInstagramPosts(instagramresponse);
-        })
+        }   
     }, []);
 
     const createMarkup = () => {

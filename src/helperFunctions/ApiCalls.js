@@ -42,6 +42,16 @@ function getInstagramPosts(callback) {
     .catch(err => console.log(err))
 }
 
+function getImportantNews(callback) {
+    axios.get(`${url}/APIretrieveImportantNews`)
+    .then(data => {
+        callback(data.data.body);
+    })
+    .catch(err => console.log(err))
+}
+
+
+
 function updateInstagramPosts(newContent, callback) {
     console.log('sending: ', newContent);
     axios({
@@ -49,6 +59,45 @@ function updateInstagramPosts(newContent, callback) {
         url: `${url}/APInewInstagramPost`,
         data: {
             newContent
+        }
+    })
+    .then(data => callback(data))
+    .catch(err => console.log(err))
+}
+
+function updateImportantNews(newContent, callback) {
+    console.log('sending: ', newContent);
+    axios({
+        method: 'post',
+        url: `${url}/APInewImportantMessage`,
+        data: {
+            newContent
+        }
+    })
+    .then(data => callback(data))
+    .catch(err => console.log(err))
+}
+
+function deleteImportantNews(id, callback) {
+    console.log('sending: ', id);
+    axios({
+        method: 'post',
+        url: `${url}/APIdeleteImportantNews`,
+        data: {
+            id
+        }
+    })
+    .then(data => callback(data))
+    .catch(err => console.log(err))
+}
+
+function removeInstagramPost(id, callback) {
+    console.log('sending: ', id);
+    axios({
+        method: 'post',
+        url: `${url}/APIdeleteInstagramPost`,
+        data: {
+            id
         }
     })
     .then(data => callback(data))
@@ -131,6 +180,10 @@ export default{
     updateGalleryPage,
     login,
     getInstagramPosts,
-    updateInstagramPosts
+    updateInstagramPosts,
+    getImportantNews,
+    deleteImportantNews,
+    updateImportantNews,
+    removeInstagramPost
 };
 

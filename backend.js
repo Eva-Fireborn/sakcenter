@@ -10,12 +10,11 @@ function connectToDB(callback) {
   })
   connection.connect(function(err) {
       if (err) throw err;
-      console.log('connected!');
       callback(connection);
   })
 }
 
-  /* const mysql = require('mysql');
+  /*const mysql = require('mysql');
     const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -24,18 +23,17 @@ function connectToDB(callback) {
   })
   connection.connect(function(err) {
       if (err) throw err;
-      console.log('connected!');
       //callback(connection);
   })
   
-  connection.query('CREATE TABLE instagram (id INT AUTO_INCREMENT PRIMARY KEY, link VARCHAR(255), description VARCHAR(255))', function (err, result) {
+  connection.query('CREATE TABLE importantNews (id INT AUTO_INCREMENT PRIMARY KEY, endDate DATE, message VARCHAR(255))', function (err, result) {
       if (err) throw err;
       console.log('Table created: ', result);
       connection.end()
   })
   
 
-   const sql = "INSERT INTO instagram (link, description) VALUES ('https://www.instagram.com/p/BfatBEXh_dW/', 'Sarkofag')";
+   const sql = "INSERT INTO importantNews (endDate, message) VALUES ('2020-03-09', 'Sakcenter stängt på söndag!')";
   connection.query(sql, function (err, result) {
       if (err) throw err;
       console.log('Inserted: ', result);
@@ -43,14 +41,15 @@ function connectToDB(callback) {
   })*/
 
   function retrievePassword(userPassword, callback) {
-    console.log('userPassword: ', userPassword);
+
     const hash = require('object-hash');
     const salt = 'vd%.>W6Y6KGAF>sb6RdfN';
     const newPassword = hash(salt+userPassword);
-    console.log('newPassword: ', newPassword);
+
     connectToDB(connection => {
+      //Insert new password
       // const sql = `INSERT INTO admin (type, content) VALUES ('password', '${newPassword}')`
-      connection.query("SELECT * FROM admin WHERE type = 'password'", function (err, result, fields) {
+      connection.query("SELECT * FROM admin WHERE type = 'password'", function (err, result) {
         if (err) {
           connection.end()
           throw err;
@@ -59,7 +58,6 @@ function connectToDB(callback) {
         if (result) {
           result.forEach(res => {
             if (newPassword === res.content) {
-              console.log('Rätt lösenord');
               loggedIn = true;
             }
           });
@@ -79,7 +77,22 @@ function connectToDB(callback) {
         }
 
         if (result) {
-          console.log('result: ', result);
+          callback(result);
+        connection.end()
+        }
+      })
+    })
+  }
+
+  function retrieveImportantNews(callback) {
+    connectToDB(connection => {
+      connection.query("SELECT * FROM importantNews", function (err, result) {
+        if (err) {
+          connection.end()
+          throw err;
+        }
+
+        if (result) {
           callback(result);
         connection.end()
         }
@@ -89,14 +102,12 @@ function connectToDB(callback) {
 
   function retrieveAboutPage(callback) {
     connectToDB(connection => {
-      connection.query("SELECT * FROM aboutPage WHERE type = 'pageContent'", function (err, result, fields) {
+      connection.query("SELECT * FROM aboutPage WHERE type = 'pageContent'", function (err, result) {
         if (err) {
           connection.end()
           throw err;
         }
-        // console.log('fields: ', fields)
         if (result) {
-          console.log('result: ', result);
           callback(result);
         connection.end()
         }
@@ -106,14 +117,12 @@ function connectToDB(callback) {
 
   function retrieveWorkshopPage(callback) {
     connectToDB(connection => {
-      connection.query("SELECT * FROM workshopPage WHERE type = 'pageContent'", function (err, result, fields) {
+      connection.query("SELECT * FROM workshopPage WHERE type = 'pageContent'", function (err, result) {
         if (err) {
           connection.end()
           throw err;
         }
-        // console.log('fields: ', fields)
         if (result) {
-          console.log('result: ', result);
           callback(result);
         connection.end()
         }
@@ -123,14 +132,12 @@ function connectToDB(callback) {
 
     function retrieveInformationPage(callback) {
     connectToDB(connection => {
-      connection.query("SELECT * FROM informationPage WHERE type = 'pageContent'", function (err, result, fields) {
+      connection.query("SELECT * FROM informationPage WHERE type = 'pageContent'", function (err, result) {
         if (err) {
           connection.end()
           throw err;
         }
-        // console.log('fields: ', fields)
         if (result) {
-          console.log('result: ', result);
           callback(result);
         connection.end()
         }
@@ -140,14 +147,12 @@ function connectToDB(callback) {
 
   function retrieveGalleryPage(callback) {
     connectToDB(connection => {
-      connection.query("SELECT * FROM galleryPage WHERE type = 'pageContent'", function (err, result, fields) {
+      connection.query("SELECT * FROM galleryPage WHERE type = 'pageContent'", function (err, result) {
         if (err) {
           connection.end()
           throw err;
         }
-        // console.log('fields: ', fields)
         if (result) {
-          console.log('result: ', result);
           callback(result);
         connection.end()
         }
@@ -156,18 +161,16 @@ function connectToDB(callback) {
   }
 
   function updateAboutPage(newContent, response) {
-    console.log('newContent: ', newContent);
-    //const content = JSON.stringify(newContent);
+
     const request = `UPDATE aboutPage SET content = '${newContent}' WHERE type = 'pageContent'`
+
     connectToDB(connection => {
-      connection.query(request, function (err, result, fields) {
+      connection.query(request, function (err, result) {
         if (err) {
           connection.end()
           throw err;
         }
-        // console.log('fields: ', fields)
         if (result) {
-          console.log('result: ', result);
           response(result);
         connection.end()
         }
@@ -176,18 +179,16 @@ function connectToDB(callback) {
   }
 
   function updateWorkshopPage(newContent, response) {
-    console.log('newContent: ', newContent);
-    //const content = JSON.stringify(newContent);
+
     const request = `UPDATE workshopPage SET content = '${newContent}' WHERE type = 'pageContent'`
+
     connectToDB(connection => {
-      connection.query(request, function (err, result, fields) {
+      connection.query(request, function (err, result) {
         if (err) {
           connection.end()
           throw err;
         }
-        // console.log('fields: ', fields)
         if (result) {
-          console.log('result: ', result);
           response(result);
         connection.end()
         }
@@ -196,18 +197,16 @@ function connectToDB(callback) {
   }
 
   function updateInformationPage(newContent, response) {
-    console.log('newContent: ', newContent);
-    //const content = JSON.stringify(newContent);
+
     const request = `UPDATE informationPage SET content = '${newContent}' WHERE type = 'pageContent'`
+
     connectToDB(connection => {
-      connection.query(request, function (err, result, fields) {
+      connection.query(request, function (err, result) {
         if (err) {
           connection.end()
           throw err;
         }
-        // console.log('fields: ', fields)
         if (result) {
-          console.log('result: ', result);
           response(result);
         connection.end()
         }
@@ -216,18 +215,16 @@ function connectToDB(callback) {
   }
 
   function updateGalleryPage(newContent, response) {
-    console.log('newContent: ', newContent);
-    //const content = JSON.stringify(newContent);
+
     const request = `UPDATE galleryPage SET content = '${newContent}' WHERE type = 'pageContent'`
+
     connectToDB(connection => {
-      connection.query(request, function (err, result, fields) {
+      connection.query(request, function (err, result) {
         if (err) {
           connection.end()
           throw err;
         }
-        // console.log('fields: ', fields)
         if (result) {
-          console.log('result: ', result);
           response(result);
         connection.end()
         }
@@ -236,7 +233,6 @@ function connectToDB(callback) {
   }
   
   function updateInstagramPosts(newContent, response) {
-    console.log('newContent: ', newContent);
 
     const request =  `INSERT INTO instagram (link, description) VALUES ('${newContent.link}', '${newContent.description}')`;
 
@@ -247,13 +243,66 @@ function connectToDB(callback) {
           throw err;
         }
         if (result) {
-          console.log('result: ', result);
           response(result);
         connection.end()
         }
       })
     })
   }
+
+  function updateImportantMessage(newContent, response) {
+
+    const request =  `INSERT INTO importantNews (endDate, message) VALUES ('${newContent.endDate}', '${newContent.message}')`;
+
+    connectToDB(connection => {
+      connection.query(request, function (err, result) {
+        if (err) {
+          connection.end()
+          throw err;
+        }
+        if (result) {
+          response(result);
+        connection.end()
+        }
+      })
+    })
+  }
+
+  function deleteImportantNews(id, response) {
+
+    const request =  `DELETE FROM importantNews WHERE id = '${id}'`;
+
+    connectToDB(connection => {
+      connection.query(request, function (err, result) {
+        if (err) {
+          connection.end()
+          throw err;
+        }
+        if (result) {
+          response(result);
+        connection.end()
+        }
+      })
+    })
+  }
+
+  function deleteInstagramPost(id, response) {
+    const request =  `DELETE FROM instagram WHERE id = '${id}'`;
+
+    connectToDB(connection => {
+      connection.query(request, function (err, result) {
+        if (err) {
+          connection.end()
+          throw err;
+        }
+        if (result) {
+          response(result);
+        connection.end()
+        }
+      })
+    })
+  }
+
 
 module.exports = {
   retrieveAboutPage,
@@ -266,6 +315,10 @@ module.exports = {
   updateGalleryPage,
   retrievePassword,
   retrieveInstagramPosts,
-  updateInstagramPosts
+  updateInstagramPosts,
+  retrieveImportantNews,
+  deleteImportantNews,
+  updateImportantMessage,
+  deleteInstagramPost
 };
 

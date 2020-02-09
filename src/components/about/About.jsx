@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect } from 'react';
+import { useGlobalState } from '../../helperFunctions/GlobalState';
 import API from '../../helperFunctions/ApiCalls';
 import Lamps from '../../img/lampor.jpg';
 import Police from '../../img/polis-rekvisita-2.jpg';
@@ -10,16 +11,18 @@ import smallHeader from '../../img/tygbild-blommor-380px.jpg';
 import './about.scss';
 
 const About = () => {
-    const [content, setContent] = useState(null);
+    const [content, setContent] = useGlobalState('contentAboutPage');
 
     useEffect(()=> {
-        API.getAboutPage(res => {
-            res.forEach(content => {
-                if (content.type === 'pageContent') {
-                    setContent(content.content);
-                }
-            })
-        });
+        if(!content) {
+            API.getAboutPage(res => {
+                res.forEach(content => {
+                    if (content.type === 'pageContent') {
+                        setContent(content.content);
+                    }
+                })
+            });
+        }
     }, []);
 
     const createMarkup = () => {

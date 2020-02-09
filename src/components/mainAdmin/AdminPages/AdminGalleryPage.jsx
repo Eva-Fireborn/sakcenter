@@ -29,7 +29,6 @@ const AdminGalleryPage= () => {
         API.getInstagramPosts(result => {
             result.forEach( res => {
                 instagramresponse.push(res);
-                console.log('list: ', instagramresponse)
             })
             setInstagramPosts(instagramresponse);
         })
@@ -50,23 +49,25 @@ const AdminGalleryPage= () => {
 
     const updateLinkInput = (e) => {
         setInputLinkValue(e.target.value);
-        console.log(e.target.value);
     }
 
     const updateDescInput = (e) => {
         setInputDescValue(e.target.value);
-        console.log(e.target.value);
     }
     const updateNewInstagramPost = () => {
         const newPost = {
             link: instaLinkInput,
             description: instaDescInput
         };
-        console.log(newPost);
         API.updateInstagramPosts(newPost, result => {
-            console.log(result);
             updateInstagramPosts();
         });
+    }
+
+    const removePicture = (id) => {
+        API.removeInstagramPost(id, result => {
+            updateInstagramPosts();
+        })
     }
 
     return (
@@ -96,10 +97,11 @@ const AdminGalleryPage= () => {
                 </div>
             </div>
             <div className="InstagramEditor">
+                <h3>Instagram bilder:</h3>
                 {instagramPosts && instagramPosts.length && (
                     <ul>
                         {instagramPosts.map((post, index) => {
-                        return <li key={index}>{post.description} <span>({post.link})</span> </li>
+                        return <li key={index}>{post.description} <span>({post.link})</span> <Button buttonText="Radera bilden" onClick={() => removePicture(post.id)} /> </li>
                         })}
                     </ul>
                 )}

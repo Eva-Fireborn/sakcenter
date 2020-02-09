@@ -13,7 +13,11 @@ const {
 	updateGalleryPage,
 	retrievePassword,
 	retrieveInstagramPosts,
-	updateInstagramPosts
+	updateInstagramPosts,
+	retrieveImportantNews,
+	deleteImportantNews,
+	updateImportantMessage,
+	deleteInstagramPost
  } = require('./backend.js');
 const bodyParser = require('body-parser')
 expServer.use(
@@ -30,6 +34,14 @@ expServer.use('/', function (req, res, next) {
 	next();
 });
 
+expServer.get('/APIretrieveImportantNews', (request, response) => {
+	retrieveImportantNews(result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
 
 expServer.get('/APIretrieveAbout', (request, response) => {
 	retrieveAboutPage(result => {
@@ -76,8 +88,25 @@ expServer.get('/APIgetInstagramPosts', (request, response) => {
 	})
 });
 
+expServer.post('/APIdeleteImportantNews', (request, response) => {
+	deleteImportantNews(request.body.id, result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
+
+expServer.post('/APIdeleteInstagramPost', (request, response) => {
+	deleteInstagramPost(request.body.id, result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
+
 expServer.post('/APInewInstagramPost', (request, response) => {
-    console.log('req body: ', request.body.newContent);
 	updateInstagramPosts(request.body.newContent, result => {
 		response.send({
 			status: 200,
@@ -86,8 +115,17 @@ expServer.post('/APInewInstagramPost', (request, response) => {
 	})
 });
 
+expServer.post('/APInewImportantMessage', (request, response) => {
+	updateImportantMessage(request.body.newContent, result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
+
+
 expServer.post('/APIpostAbout', (request, response) => {
-    console.log('req body: ', request.body);
 	updateAboutPage(request.body.newContent, result => {
 		response.send({
 			status: 200,
@@ -97,7 +135,6 @@ expServer.post('/APIpostAbout', (request, response) => {
 });
 
 expServer.post('/APIpostWorkshop', (request, response) => {
-    console.log('req body: ', request.body);
 	updateWorkshopPage(request.body.newContent, result => {
 		response.send({
 			status: 200,
@@ -107,7 +144,6 @@ expServer.post('/APIpostWorkshop', (request, response) => {
 });
 
 expServer.post('/APIpostInformation', (request, response) => {
-    console.log('req body: ', request.body);
 	updateInformationPage(request.body.newContent, result => {
 		response.send({
 			status: 200,
@@ -117,7 +153,6 @@ expServer.post('/APIpostInformation', (request, response) => {
 });
 
 expServer.post('/APIpostGallery', (request, response) => {
-    console.log('req body: ', request.body);
 	updateGalleryPage(request.body.newContent, result => {
 		response.send({
 			status: 200,
@@ -127,7 +162,6 @@ expServer.post('/APIpostGallery', (request, response) => {
 });
 
 expServer.post('/APIlogin', (request, response) => {
-    console.log('req body: ', request.body);
 	retrievePassword(request.body.password, result => {
 		response.send({
 			status: 200,
@@ -153,9 +187,7 @@ expServer.post('/APIlogin', (request, response) => {
 });
 
 const port = process.env.PORT || 5000;
-app.listen(port);
-
-console.log('App is listening on port ' + port);*/
+app.listen(port);*/
 
 // OBS! Starta httpServer i stället för expServer.
 httpServer.listen(port, () => {
