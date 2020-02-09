@@ -3,6 +3,9 @@ import { useGlobalState } from '../../helperFunctions/GlobalState';
 import Instagram from './Instagram';
 import API from '../../helperFunctions/ApiCalls';
 import sakcenterPic from '../../img/överblicksbild-av-sakcenter1000px.png';
+import largeHeader from '../../img/tygbild-brunt-1920px.jpg';
+import mediumHeader from '../../img/tygbild-brunt-780px.jpg';
+import smallHeader from '../../img/tygbild-brunt-380px.jpg';
 import './gallery.scss';
 
 const Gallery= () => {
@@ -35,6 +38,14 @@ const Gallery= () => {
     }
     return (
         <div className="gallery">
+            <div className="heroImage">
+                <picture>
+                    <source media="(max-width: 380px)" srcSet={smallHeader}/>
+                    <source media="(max-width: 780px)" srcSet={mediumHeader}/>
+                    <source media="(max-width: 780px)" srcSet={largeHeader}/>
+                    <img src={largeHeader} alt="tyg med bruna mönster" />
+                </picture>
+            </div>
             <div className="heroImageSakcenter">
                 <img src={sakcenterPic} alt="Överblick av Sakcenter" />
             </div>
@@ -56,8 +67,9 @@ const Gallery= () => {
             </div>
                 {instagramPosts && instagramPosts.length && (
                     <div className="instagramPosts">
+                        <div className="divider" />
                         <div className="instagramHeader">
-                            <h3>För att se fler bilder på förrådet besök vår Instagram</h3>
+                            <h3><a href="https://www.instagram.com/sakcenter/" target="blank">Gå till vår Instagram för att se alla bilder</a></h3>
                         </div>
                         {instagramPosts.map((post, index) => {
                             return <div className="instagramPost"><Instagram key={index} URL={post.link} /></div>

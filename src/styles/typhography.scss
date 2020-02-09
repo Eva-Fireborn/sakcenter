@@ -1,16 +1,74 @@
 @import './fonts.scss';
 @import './variables.scss';
 
+h1 {
+    font-family: 'Proxima Nova Alt';
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 33px;
+    color: $black;
+    margin: 20px 0 10px;
+
+    @media (min-width: $screen-desktop) {
+        font-size: 32px;
+        line-height: 35px;
+    }
+}
+
+h2 {
+    font-family: 'Proxima Nova Alt';
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 28px;
+    color: $black;
+    margin: 20px 0 10px;
+
+    @media (min-width: $screen-desktop) {
+        font-size: 28px;
+        line-height: 32px;
+    }
+}
+
+h3 {
+    font-family: 'Proxima Nova Alt';
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 26px;
+    color: $black;
+    margin: 20px 0 10px;
+
+    @media (min-width: $screen-desktop) {
+        font-size: 25px;
+        line-height: 28px;
+    }
+}
+
 h4 {
     font-family: 'Proxima Nova Alt';
     font-weight: 600;
     font-size: 18px;
     line-height: 22px;
     color: $black;
+    margin: 10px 0 5px;
 
     @media (min-width: $screen-desktop) {
         font-size: 21px;
         line-height: 25px;
+    }
+}
+
+h5,
+H6 {
+    font-family: 'Proxima Nova Alt';
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: $black;
+    margin: 10px 0 5px;
+
+    @media (min-width: $screen-desktop) {
+        font-size: 18px;
+        line-height: 23px;
     }
 }
 
@@ -20,6 +78,7 @@ p {
     font-size: 18px;
     line-height: 22px;
     color: $black;
+    margin: 10px 0 5px;
 
     @media (min-width: $screen-desktop) {
         font-size: 21px;
@@ -70,14 +129,4 @@ li {
     font-size: 16px;
     line-height: 20px;
     color: $black;
-}
-
-.textWrapper {
-    &:first-child {
-        margin-top: 0;
-    }
-}
-
-.textWrapper:first-child {
-    margin-top: 0;
 }
