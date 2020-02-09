@@ -25,20 +25,52 @@
         }
     }
 
-    .informationText {
-        width: 100%;
-        //background-color: $grey;
-        padding: $smallPadding;
-        //border-radius: $standardBorderRadius;
-        margin-bottom: $smallPadding;
+    .informationTextAndImages {
+        display: flex;
+        flex-direction: column;
 
-        @media (min-width: $screen-desktop) {
-            padding: $mediumPadding;
-            //width: 50%;
-            column-count: 2;
-            column-width: 45%;
-            column-gap: $mediumPadding;
-            margin-bottom: $mediumPadding;
+        .informationText {
+            width: 100%;
+            padding: $smallPadding;
+            margin-bottom: $smallPadding;
+    
+            @media (min-width: $screen-desktop) {
+                padding: $mediumPadding;
+                column-count: 2;
+                column-width: 45%;
+                column-gap: $mediumPadding;
+                margin-bottom: $mediumPadding;
+            }
+        }
+
+        .informationImg {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            @media (min-width: $screen-desktop) {
+                flex-direction: row;
+            }
+
+            > .imgWrapper {
+                width: 100%;
+                height: auto;
+                overflow: hidden;
+
+                @media (min-width: $screen-desktop) {
+                    width: 50%;
+                    height: 500px;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
         }
     }
+
+    
 }

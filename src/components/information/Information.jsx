@@ -5,7 +5,14 @@ import API from '../../helperFunctions/ApiCalls';
 import largeHeader from '../../img/tygbild-röda-rosor-1920px.jpg';
 import mediumHeader from '../../img/tygbild-röda-rosor-780px.jpg';
 import smallHeader from '../../img/tygbild-röda-rosor-380px.jpg';
+import largeLamps from '../../img/lampor-1920px.jpg';
+import mediumLamps from '../../img/lampor-780px.jpg';
+import smallLamps from '../../img/lampor-380px.jpg';
+import largeElectronics from '../../img/teknik-1920px.jpg';
+import mediumElectronics from '../../img/teknik-780px.jpg';
+import smallElectronics from '../../img/teknik-380px.jpg';
 import './information.scss';
+
 
 const Information= () => {
     const [content, setContent] = useGlobalState('contentInformationPage');
@@ -35,12 +42,32 @@ const Information= () => {
                 <img src={largeHeader} alt="tyg med blommönster" />
             </picture>
             </div>
-            {content ? (
-                <div className="textWrapper informationText" dangerouslySetInnerHTML={createMarkup()}>
+            <div className="informationTextAndImages">
+                {content ? (
+                    <div className="textWrapper informationText" dangerouslySetInnerHTML={createMarkup()}>
 
+                    </div>
+                ) : (<div className="informationText"><p>Laddar informationen</p></div>)}
+                <div className="informationImg">
+                    <div className="imgWrapper">
+                    <picture>
+                        <source media="(max-width: 380px)" srcSet={smallLamps}/>
+                        <source media="(max-width: 780px)" srcSet={mediumLamps}/>
+                        <source media="(min-width: 780px)" srcSet={largeLamps}/>
+                        <img src={largeLamps} alt="Bordslampor och lampskärmar" />
+                    </picture>
+                    </div>
+                    <div className="imgWrapper">
+                    <picture>
+                        <source media="(max-width: 380px)" srcSet={smallElectronics}/>
+                        <source media="(max-width: 780px)" srcSet={mediumElectronics}/>
+                        <source media="(min-width: 780px)" srcSet={largeElectronics}/>
+                        <img src={largeElectronics} alt="Retro teknik" />
+                    </picture>
+                    </div>
                 </div>
-            ) : (<p>Laddar informationen</p>)}
                 <Button buttonText={'Till galleriet'} />
+                </div>
         </div>
     )
 }
