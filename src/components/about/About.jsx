@@ -22,7 +22,7 @@ const About = () => {
                     setInformationToUser('Något har gått fel, prova att ladda om sidan.');
                 } else if (res && res.length) {
                     res.forEach(content => {
-                        if (content.type === 'pageContent') {
+                        if (content.type === 'aboutPage') {
                             console.log('setting content')
                             setContent(content.content);
                         }

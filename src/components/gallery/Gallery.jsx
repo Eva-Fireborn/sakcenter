@@ -20,7 +20,7 @@ const Gallery= () => {
                     setInformationToUser('Något har gått fel, prova att ladda om sidan.');
                 } else if (res && res.length) {
                     res.forEach(content => {
-                        if (content.type === 'pageContent') {
+                        if (content.type === 'galleryPage') {
                             setContent(content.content);
                         }
                     });

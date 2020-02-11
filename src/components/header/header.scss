@@ -94,9 +94,10 @@
 
         @media (min-width: $screen-desktop) {
             height: 150px;
-            width: auto;
+            width: 100%;
             display: flex;
             position: relative;
+            justify-content: center;
 
             &.-hidden {
                 display: flex;
@@ -104,8 +105,12 @@
 
             > li {
                 display: block;
-                padding: 0 2em;
                 text-align: center;
+                padding: 0 10px;
+
+                @media (min-width: $screen-desktop-XL) {
+                    padding: 0 2em;
+                }
     
                 > a {
                 display: inline-block;
@@ -125,7 +130,11 @@
                 }
             }
             > .logo {
-                padding: 0 5em;
+                padding: 0 15px;
+
+                @media (min-width: $screen-desktop-XL) {
+                    padding: 0 5em;
+                }
     
                 > a {
                     padding: 20px 0 0;

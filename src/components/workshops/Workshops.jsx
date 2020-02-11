@@ -17,7 +17,7 @@ const Workshops= () => {
                     setInformationToUser('Något har gått fel, prova att ladda om sidan.');
                 } else if (result && result.length) {
                     result.forEach(content => {
-                        if (content.type === 'pageContent') {
+                        if (content.type === 'workshopPage') {
                             setContent(content.content);
                         }
                     });

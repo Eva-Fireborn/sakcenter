@@ -3,10 +3,10 @@
 function connectToDB(callback) {
     const mysql = require('mysql');
     const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'sakcenterLocal'
+    host: 'sakcenter.se',
+    user: 'sakcenter_admin',
+    password: 'k]V@28imybG)pw*@JD^,3',
+    database: 'sakcenter_webpage',
   })
   connection.connect(function(err) {
       if (err) throw err;
@@ -102,7 +102,7 @@ function connectToDB(callback) {
 
   function retrieveContactPage(callback) {
     connectToDB(connection => {
-      connection.query("SELECT * FROM contactPage WHERE type = 'pageContent'", function (err, result) {
+      connection.query("SELECT * FROM pages WHERE type = 'contactPage'", function (err, result) {
         if (err) {
           connection.end()
           throw err;
@@ -117,7 +117,7 @@ function connectToDB(callback) {
 
   function retrieveAboutPage(callback) {
     connectToDB(connection => {
-      connection.query("SELECT * FROM aboutPage WHERE type = 'pageContent'", function (err, result) {
+      connection.query("SELECT * FROM pages WHERE type = 'aboutPage'", function (err, result) {
         if (err) {
           connection.end()
           throw err;
@@ -131,14 +131,16 @@ function connectToDB(callback) {
   }
 
   function retrieveWorkshopPage(callback) {
+    console.log('calling on connection');
     connectToDB(connection => {
-      connection.query("SELECT * FROM workshopPage WHERE type = 'pageContent'", function (err, result) {
+      connection.query("SELECT * FROM pages WHERE type = 'workshopPage'", function (err, result) {
         if (err) {
           connection.end()
           throw err;
         }
         if (result) {
           callback(result);
+          console.log('result: ', result);
         connection.end()
         }
       })
@@ -147,7 +149,7 @@ function connectToDB(callback) {
 
     function retrieveInformationPage(callback) {
     connectToDB(connection => {
-      connection.query("SELECT * FROM informationPage WHERE type = 'pageContent'", function (err, result) {
+      connection.query("SELECT * FROM pages WHERE type = 'informationPage'", function (err, result) {
         if (err) {
           connection.end()
           throw err;
@@ -162,7 +164,7 @@ function connectToDB(callback) {
 
   function retrieveGalleryPage(callback) {
     connectToDB(connection => {
-      connection.query("SELECT * FROM galleryPage WHERE type = 'pageContent'", function (err, result) {
+      connection.query("SELECT * FROM pages WHERE type = 'galleryPage'", function (err, result) {
         if (err) {
           connection.end()
           throw err;

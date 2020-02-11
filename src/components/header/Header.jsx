@@ -15,7 +15,7 @@ const Header = ({ Link, NavLink }) => {
 
     useEffect(()=> {
         if (message === null) {
-            API.getImportantNews(res => {
+            /*API.getImportantNews(res => {
                 if(res && res.length) {
                     res.forEach(content => {
                         if (moment().format(content.endDate) > moment().format()) {
@@ -25,7 +25,7 @@ const Header = ({ Link, NavLink }) => {
                         }
                     })
                 }
-            });
+            });*/
         }
     }, []);
 
@@ -57,7 +57,7 @@ const Header = ({ Link, NavLink }) => {
                         <Link to="/"><img src={Logo} alt="Sakcenter logotyp" /></Link>
                     </li>
                     <li>
-                        <NavLink to="/Workshop" onClick={displayMenu}>Workshops och föreläsningar</NavLink>
+                        <NavLink to="/Workshop" onClick={displayMenu}>Workshops</NavLink>
                     </li>
                     <li>
                         <NavLink to="/Kontakt" onClick={displayMenu}>Kontakt</NavLink>
