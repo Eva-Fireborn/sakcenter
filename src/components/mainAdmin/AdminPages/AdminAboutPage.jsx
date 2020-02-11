@@ -8,14 +8,19 @@ import './adminAboutPage.scss';
 const AdminAboutPage= () => {
     const [textfieldValue, setTextfield] = useState("");
     const [finishedLoading, setLoading] = useState(false);
+    const [userInformation, setUserInformation] = useState('Tusen små hamstrar alstrar energi för att hämta din data');
 
     useEffect(()=> {
         API.getAboutPage(result => {
-            result.forEach( res => {
-                if (res.type === 'pageContent')
-                    setTextfield(res.content);
-            })
-            setLoading(true);
+            if (result === 'error') {
+                setUserInformation('Innehållet kunde inte laddas, prova igen.')
+            } else if (result && result.length) {
+                result.forEach( res => {
+                    if (res.type === 'pageContent')
+                        setTextfield(res.content);
+                });
+                setLoading(true);
+            }
         });
     }, []);
 
@@ -53,7 +58,7 @@ const AdminAboutPage= () => {
                     }}
                     onChange={handleEditorChange}
                 />) : (
-                    <p>Tusen små hamstrar alstrar energi för att hämta din data</p>
+                    <p>{userInformation}</p>
                 )}
                 <Button buttonText="Spara text" onClick={sendTextToServer}/>
                 <div className="wrapperText" dangerouslySetInnerHTML={createMarkup()}>

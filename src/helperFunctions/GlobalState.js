@@ -8,6 +8,7 @@ const initialState = {
   contentGalleryPage: null,
   instagramPosts: null,
   contentWorkshopPage: null,
+  contentContactPage: null,
 };
 
 export const { GlobalStateProvider, useGlobalState } = createGlobalState(initialState);

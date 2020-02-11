@@ -17,7 +17,9 @@ const {
 	retrieveImportantNews,
 	deleteImportantNews,
 	updateImportantMessage,
-	deleteInstagramPost
+	deleteInstagramPost,
+	retrieveContactPage,
+	updateContactPage
  } = require('./backend.js');
 const bodyParser = require('body-parser')
 expServer.use(
@@ -26,7 +28,7 @@ expServer.use(
 	})
 )
 
-expServer.use(bodyParser.json())
+expServer.use(bodyParser.json());
 
 expServer.use('/', function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
@@ -81,6 +83,15 @@ expServer.get('/APIretrieveGallery', (request, response) => {
 
 expServer.get('/APIgetInstagramPosts', (request, response) => {
 	retrieveInstagramPosts(result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
+
+expServer.get('/APIretrieveContact', (request, response) => {
+	retrieveContactPage(result => {
 		response.send({
 			status: 200,
 			body: result
@@ -154,6 +165,15 @@ expServer.post('/APIpostInformation', (request, response) => {
 
 expServer.post('/APIpostGallery', (request, response) => {
 	updateGalleryPage(request.body.newContent, result => {
+		response.send({
+			status: 200,
+			body: result
+		})
+	})
+});
+
+expServer.post('/APIpostContact', (request, response) => {
+	updateContactPage(request.body.newContent, result => {
 		response.send({
 			status: 200,
 			body: result

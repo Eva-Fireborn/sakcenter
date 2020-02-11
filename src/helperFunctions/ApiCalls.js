@@ -7,7 +7,7 @@ function getAboutPage(callback) {
     .then(data => {
         callback(data.data.body);
     })
-    .catch(err => console.log(err))
+    .catch(err => callback('error'));
 }
 
 function getWorkshopPage(callback) {
@@ -15,7 +15,7 @@ function getWorkshopPage(callback) {
     .then(data => {
         callback(data.data.body);
     })
-    .catch(err => console.log(err))
+    .catch(err => callback('error'))
 }
 
 function getInformationPage(callback) {
@@ -23,7 +23,15 @@ function getInformationPage(callback) {
     .then(data => {
         callback(data.data.body);
     })
-    .catch(err => console.log(err))
+    .catch(err => callback('error'))
+}
+
+function getContactPage(callback) {
+    axios.get(`${url}/APIretrieveContact`)
+    .then(data => {
+        callback(data.data.body);
+    })
+    .catch(err => callback('error'))
 }
 
 function getGalleryPage(callback) {
@@ -31,7 +39,7 @@ function getGalleryPage(callback) {
     .then(data => {
         callback(data.data.body);
     })
-    .catch(err => console.log(err))
+    .catch(err => callback('error'))
 }
 
 function getInstagramPosts(callback) {
@@ -39,7 +47,7 @@ function getInstagramPosts(callback) {
     .then(data => {
         callback(data.data.body);
     })
-    .catch(err => console.log(err))
+    .catch(err => callback('error'))
 }
 
 function getImportantNews(callback) {
@@ -47,13 +55,12 @@ function getImportantNews(callback) {
     .then(data => {
         callback(data.data.body);
     })
-    .catch(err => console.log(err))
+    .catch(err => callback('error'))
 }
 
 
 
 function updateInstagramPosts(newContent, callback) {
-    console.log('sending: ', newContent);
     axios({
         method: 'post',
         url: `${url}/APInewInstagramPost`,
@@ -66,7 +73,6 @@ function updateInstagramPosts(newContent, callback) {
 }
 
 function updateImportantNews(newContent, callback) {
-    console.log('sending: ', newContent);
     axios({
         method: 'post',
         url: `${url}/APInewImportantMessage`,
@@ -105,7 +111,6 @@ function removeInstagramPost(id, callback) {
 }
 
 function updateAboutPage(newContent) {
-    console.log('sending: ', newContent);
     axios({
         method: 'post',
         url: `${url}/APIpostAbout`,
@@ -117,8 +122,19 @@ function updateAboutPage(newContent) {
     .catch(err => console.log(err))
 }
 
+function updateContactPage(newContent) {
+    axios({
+        method: 'post',
+        url: `${url}/APIpostContact`,
+        data: {
+            newContent
+        }
+    })
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
+}
+
 function updateWorkshopPage(newContent) {
-    console.log('sending: ', newContent);
     axios({
         method: 'post',
         url: `${url}/APIpostWorkshop`,
@@ -131,7 +147,6 @@ function updateWorkshopPage(newContent) {
 }
 
 function updateInformationPage(newContent) {
-    console.log('sending: ', newContent);
     axios({
         method: 'post',
         url: `${url}/APIpostInformation`,
@@ -144,7 +159,6 @@ function updateInformationPage(newContent) {
 }
 
 function updateGalleryPage(newContent) {
-    console.log('sending: ', newContent);
     axios({
         method: 'post',
         url: `${url}/APIpostGallery`,
@@ -157,7 +171,6 @@ function updateGalleryPage(newContent) {
 }
 
 function login(password, response) {
-    console.log('sending: ', password);
     axios({
         method: 'post',
         url: `${url}/APIlogin`,
@@ -166,7 +179,7 @@ function login(password, response) {
         }
     })
     .then(data => response(data))
-    .catch(err => console.log(err))
+    .catch(err => response('error'))
 }
 
 export default{
@@ -184,6 +197,8 @@ export default{
     getImportantNews,
     deleteImportantNews,
     updateImportantNews,
-    removeInstagramPost
+    removeInstagramPost,
+    getContactPage,
+    updateContactPage
 };
 

@@ -26,14 +26,14 @@ function connectToDB(callback) {
       //callback(connection);
   })
   
-  connection.query('CREATE TABLE importantNews (id INT AUTO_INCREMENT PRIMARY KEY, endDate DATE, message VARCHAR(255))', function (err, result) {
+  connection.query('CREATE TABLE contactPage (id INT AUTO_INCREMENT PRIMARY KEY, type VARCHAR(255), content TEXT)', function (err, result) {
       if (err) throw err;
       console.log('Table created: ', result);
       connection.end()
   })
   
 
-   const sql = "INSERT INTO importantNews (endDate, message) VALUES ('2020-03-09', 'Sakcenter stängt på söndag!')";
+   const sql = "INSERT INTO contactPage (type, content) VALUES ('pageContent', '<h1>Kontakt</h1>')";
   connection.query(sql, function (err, result) {
       if (err) throw err;
       console.log('Inserted: ', result);
@@ -92,6 +92,21 @@ function connectToDB(callback) {
           throw err;
         }
 
+        if (result) {
+          callback(result);
+        connection.end()
+        }
+      })
+    })
+  }
+
+  function retrieveContactPage(callback) {
+    connectToDB(connection => {
+      connection.query("SELECT * FROM contactPage WHERE type = 'pageContent'", function (err, result) {
+        if (err) {
+          connection.end()
+          throw err;
+        }
         if (result) {
           callback(result);
         connection.end()
@@ -181,6 +196,24 @@ function connectToDB(callback) {
   function updateWorkshopPage(newContent, response) {
 
     const request = `UPDATE workshopPage SET content = '${newContent}' WHERE type = 'pageContent'`
+
+    connectToDB(connection => {
+      connection.query(request, function (err, result) {
+        if (err) {
+          connection.end()
+          throw err;
+        }
+        if (result) {
+          response(result);
+        connection.end()
+        }
+      })
+    })
+  }
+
+  function updateContactPage(newContent, response) {
+
+    const request = `UPDATE contactPage SET content = '${newContent}' WHERE type = 'pageContent'`
 
     connectToDB(connection => {
       connection.query(request, function (err, result) {
@@ -319,6 +352,8 @@ module.exports = {
   retrieveImportantNews,
   deleteImportantNews,
   updateImportantMessage,
-  deleteInstagramPost
+  deleteInstagramPost,
+  retrieveContactPage,
+  updateContactPage
 };
 

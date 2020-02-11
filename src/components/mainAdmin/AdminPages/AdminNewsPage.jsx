@@ -10,6 +10,7 @@ const AdminNewsPage = () => {
     const [message, setMessage] = useState('');
     const [messageToUser, setMessageToUser] = useState('');
     const [importantNews, setImportantNews] = useState(null);
+    const [userInformation, setUserInformation] = useState('');
 
     useEffect(() => {
         getNews();
@@ -17,7 +18,9 @@ const AdminNewsPage = () => {
 
     const getNews = () => {
         API.getImportantNews(res => {
-            if (res && res.length) {
+            if (res === 'error') {
+                setUserInformation('Innehållet kunde inte laddas, prova igen.');
+            } else if (res && res.length) {
                 res.forEach(content => {
                     setImportantNews(content);
                 })
@@ -87,6 +90,7 @@ const AdminNewsPage = () => {
                 <Button buttonText="Skicka ut nyheten i världen" onClick={sendNews} />
             </div>
             )}
+            {userInformation && (<p>{userInformation}</p>)}
         </div>
     )
 }

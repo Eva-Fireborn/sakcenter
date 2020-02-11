@@ -11,14 +11,19 @@ const AdminGalleryPage= () => {
     const [instagramPosts, setInstagramPosts] = useState(null);
     const [instaLinkInput, setInputLinkValue] = useState('');
     const [instaDescInput, setInputDescValue] = useState('');
+    const [userInformation, setUserInformation] = useState('Tusen små hamstrar alstrar energi för att hämta din data');
 
     useEffect(()=> {
         API.getGalleryPage(result => {
-            result.forEach( res => {
-                if (res.type === 'pageContent')
-                    setTextfield(res.content);
-            })
-            setLoading(true);
+            if(result === 'error') {
+                setUserInformation('Innehållet kunde inte laddas, prova igen.')
+            } else if (result && result.length) {
+                result.forEach( res => {
+                    if (res.type === 'pageContent')
+                        setTextfield(res.content);
+                });
+                setLoading(true);
+            }
         });
         updateInstagramPosts();
     }, []);
@@ -27,11 +32,15 @@ const AdminGalleryPage= () => {
     const updateInstagramPosts = () => {
         const instagramresponse = [];
         API.getInstagramPosts(result => {
-            result.forEach( res => {
-                instagramresponse.push(res);
-            })
-            setInstagramPosts(instagramresponse);
-        })
+            if (result === 'error') {
+                setUserInformation('Innehållet kunde inte laddas, prova igen.')
+            } else if (result && result.length) {
+                result.forEach( res => {
+                    instagramresponse.push(res);
+                })
+                setInstagramPosts(instagramresponse);
+            }
+        });
     }
 
     const handleEditorChange = (e) => {
@@ -74,7 +83,7 @@ const AdminGalleryPage= () => {
         <div className="adminInformation">
             <div className="editor">
                 <h1>Redigerare för "sortiment" sidan</h1>
-                {finishedLoading && (<Editor
+                {finishedLoading ? (<Editor
                     initialValue={textfieldValue}
                     apiKey="f5jieybbly9rmsegf57hjot7vpzs0mo853kko19fs6z2kh82"
                     init={{
@@ -90,7 +99,9 @@ const AdminGalleryPage= () => {
                             'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | help'
                     }}
                     onChange={handleEditorChange}
-                />)}
+                />) : (
+                    <p>{userInformation}</p>
+                )}
                 <Button buttonText="Spara text" onClick={sendTextToServer}/>
                 <div className="wrapperText" dangerouslySetInnerHTML={createMarkup()}>
 
@@ -98,12 +109,14 @@ const AdminGalleryPage= () => {
             </div>
             <div className="InstagramEditor">
                 <h3>Instagram bilder:</h3>
-                {instagramPosts && instagramPosts.length && (
+                {instagramPosts && instagramPosts.length ? (
                     <ul>
                         {instagramPosts.map((post, index) => {
                         return <li key={index}>{post.description} <span>({post.link})</span> <Button buttonText="Radera bilden" onClick={() => removePicture(post.id)} /> </li>
                         })}
                     </ul>
+                ) : (
+                    <p>{userInformation}</p>
                 )}
                 <div className="addNewInstagramPost">
                     <p>Länk till Instagrambild, ex https://www.instagram.com/p/BfatBEXh_dW/</p>

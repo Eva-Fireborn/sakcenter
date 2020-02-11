@@ -8,14 +8,19 @@ import './adminWorkshopPage.scss';
 const AdminWorkshopPage= () => {
     const [textfieldValue, setTextfield] = useState("<p>Hämtar data</p>");
     const [finishedLoading, setLoading] = useState(false);
+    const [userInformation, setUserInformation] = useState('Tusen små hamstrar alstrar energi för att hämta din data');
 
     useEffect(()=> {
         API.getWorkshopPage(result => {
-            result.forEach( res => {
-                if (res.type === 'pageContent')
-                    setTextfield(res.content);
-            })
-            setLoading(true);
+            if (result === 'error') {
+                setUserInformation('Innehållet kunde inte laddas, prova igen.');
+            } else if (result && result.length) {
+                result.forEach( res => {
+                    if (res.type === 'pageContent')
+                        setTextfield(res.content);
+                });
+                setLoading(true);
+            }
         });
     }, []);
 
@@ -36,7 +41,7 @@ const AdminWorkshopPage= () => {
         <div className="adminWorkshop">
             <div className="editor">
                 <h1>Redigerare för "workshop och föreläsningar" sidan</h1>
-                {finishedLoading && (<Editor
+                {finishedLoading ? (<Editor
                     initialValue={textfieldValue}
                     apiKey="f5jieybbly9rmsegf57hjot7vpzs0mo853kko19fs6z2kh82"
                     init={{
@@ -52,7 +57,9 @@ const AdminWorkshopPage= () => {
                             'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | help'
                     }}
                     onChange={handleEditorChange}
-                />)}
+                />) : (
+                    <p>{userInformation}</p>
+                )}
                 <Button buttonText="Spara text" onClick={sendTextToServer}/>
                 <div className="wrapperText" dangerouslySetInnerHTML={createMarkup()}>
 

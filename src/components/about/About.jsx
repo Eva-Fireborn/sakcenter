@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGlobalState } from '../../helperFunctions/GlobalState';
 import API from '../../helperFunctions/ApiCalls';
 import Lamps from '../../img/lampor.jpg';
@@ -12,15 +12,22 @@ import './about.scss';
 
 const About = () => {
     const [content, setContent] = useGlobalState('contentAboutPage');
+    const [informationToUser, setInformationToUser] = useState('Denna sida drivs av 1000 hamstrar som springer för fullt för att hämta informationen till dig.');
 
     useEffect(()=> {
         if(!content) {
             API.getAboutPage(res => {
-                res.forEach(content => {
-                    if (content.type === 'pageContent') {
-                        setContent(content.content);
-                    }
-                })
+                console.log(res);
+                if (res === 'error') {
+                    setInformationToUser('Något har gått fel, prova att ladda om sidan.');
+                } else if (res && res.length) {
+                    res.forEach(content => {
+                        if (content.type === 'pageContent') {
+                            console.log('setting content')
+                            setContent(content.content);
+                        }
+                    });
+                }
             });
         }
     }, []);
@@ -43,7 +50,7 @@ const About = () => {
                 <div className="textWrapper aboutText" dangerouslySetInnerHTML={createMarkup()}>
 
                 </div>
-            ) : (<p>Laddar informationen</p>)}
+            ) : (<p>{informationToUser}</p>)}
             <div className="aboutPictures">
                 <div className="upperBlock">
                     <div className="largeImageBlock">

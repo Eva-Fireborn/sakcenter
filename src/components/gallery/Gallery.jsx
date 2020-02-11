@@ -1,4 +1,4 @@
-import React, {useEffect } from 'react';
+import React, {useEffect, useState } from 'react';
 import { useGlobalState } from '../../helperFunctions/GlobalState';
 import Instagram from './Instagram';
 import API from '../../helperFunctions/ApiCalls';
@@ -11,26 +11,35 @@ import './gallery.scss';
 const Gallery= () => {
     const [content, setContent] = useGlobalState('contentGalleryPage');
     const [instagramPosts, setInstagramPosts] = useGlobalState('instagramPosts');
+    const [informationToUser, setInformationToUser] = useState('Denna sida drivs av 1000 hamstrar som springer för fullt för att hämta informationen till dig.');
 
     useEffect(()=> {
         if (!content) {
             API.getGalleryPage(res => {
-                res.forEach(content => {
-                    if (content.type === 'pageContent') {
-                        setContent(content.content);
-                    }
-                })
+                if (res === 'error') {
+                    setInformationToUser('Något har gått fel, prova att ladda om sidan.');
+                } else if (res && res.length) {
+                    res.forEach(content => {
+                        if (content.type === 'pageContent') {
+                            setContent(content.content);
+                        }
+                    });
+                }
             });
         }
-        if(!instagramPosts){
+        if(!instagramPosts) {
             const instagramresponse = [];
             API.getInstagramPosts(result => {
-                result.forEach( res => {
-                    instagramresponse.unshift(res);
-                })
-                setInstagramPosts(instagramresponse);
-            })
-        }   
+                if (result === 'error') {
+                    setInformationToUser('Något har gått fel, prova att ladda om sidan.');
+                } else if (result && result.length) {
+                    result.forEach( res => {
+                        instagramresponse.unshift(res);
+                    })
+                    setInstagramPosts(instagramresponse);
+                }
+            });
+        }
     }, []);
 
     const createMarkup = () => {
@@ -57,7 +66,7 @@ const Gallery= () => {
                     </div>
                 ) : (
                     <div className="textWrapper galleryText">
-                        <p>Laddar informationen</p>
+                        <p>{informationToUser}</p>
                     </div>
                 )}
                 
@@ -72,7 +81,7 @@ const Gallery= () => {
                             <h3><a href="https://www.instagram.com/sakcenter/" target="blank">Gå till vår Instagram för att se alla bilder</a></h3>
                         </div>
                         {instagramPosts.map((post, index) => {
-                            return <div className="instagramPost"><Instagram key={index} URL={post.link} /></div>
+                            return <div className="instagramPost" key={index}><Instagram URL={post.link} /></div>
                         })}
                     </div>
                 )}

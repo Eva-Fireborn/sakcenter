@@ -1,13 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import API from '../../helperFunctions/ApiCalls';
+import { useGlobalState } from '../../helperFunctions/GlobalState';
 import ContactCard from './ContactCard';
 import Exempelbild from '../../img/exempelbild.jpg';
-import SClogo from '../../img/SAKCENTER_LOGO_bw_2013.png';
 import largeHeader from '../../img/tygbild-gul-lila-mönster-1920px.jpg';
 import mediumHeader from '../../img/tygbild-gul-lila-mönster-780px.jpg';
 import smallHeader from '../../img/tygbild-gul-lila-mönster-380px.jpg';
 import './contact.scss';
 
+
 const Contact= () => {
+    const [content, setContent] = useGlobalState('contentContactPage');
+    const [informationToUser, setInformationToUser] = useState('Denna sida drivs av 1000 hamstrar som springer för fullt för att hämta informationen till dig.');
+
+    useEffect(() => {
+        if (!content) {
+            API.getContactPage(result => {
+                if (result === 'error') {
+                    setInformationToUser('Något har gått fel, prova att ladda om sidan.');
+                } else if (result && result.length) {
+                    result.forEach(content => {
+                        if (content.type === 'pageContent') {
+                            setContent(content.content);
+                        }
+                    });
+                }
+            });
+        }
+    }, []);
+
+    const createMarkup = () => {
+        return {__html: content}
+    }
+
     return (
         <div className="contact">
             <div className="heroImage">
@@ -18,8 +43,12 @@ const Contact= () => {
                     <img src={largeHeader} alt="tyg med blommönster" />
                 </picture>
             </div>
+            {content ? (
+                <div className="textWrapper contactText" dangerouslySetInnerHTML={createMarkup()}>
+
+                </div>
+            ) : (<p>{informationToUser}</p>)}
             <div className="contactWrapper">
-                <ContactCard name={'Sakcenter'} email={'info@sakcenter.se'} phone={''} pic={SClogo} />
                 <ContactCard name={'Eva Fireborn'} email={'eva@sakcenter.se'} phone={'0763-47 88 52'} pic={Exempelbild} />
                 <ContactCard name={'Kristina Sandfors'} email={'kristina@sakcenter.se'} phone={'0702-94 45 05'} pic={Exempelbild} />
                 <ContactCard name={'Petra Valén'} email={'petra@sakcenter.se'} phone={'0730-81 91 42'} pic={Exempelbild} />

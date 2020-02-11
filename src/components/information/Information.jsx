@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGlobalState } from '../../helperFunctions/GlobalState';
 import Button from '../reusables/CallToActionButton';
 import API from '../../helperFunctions/ApiCalls';
@@ -16,15 +16,20 @@ import './information.scss';
 
 const Information= () => {
     const [content, setContent] = useGlobalState('contentInformationPage');
+    const [informationToUser, setInformationToUser] = useState('Denna sida drivs av 1000 hamstrar som springer för fullt för att hämta informationen till dig.');
 
     useEffect(()=> {
         if (!content) {
             API.getInformationPage(res => {
-                res.forEach(content => {
-                    if (content.type === 'pageContent') {
-                        setContent(content.content);
-                    }
-                })
+                if (res === 'error') {
+                    setInformationToUser('Något har gått fel, prova att ladda om sidan.');
+                } else if (res && res.length) {
+                    res.forEach(content => {
+                        if (content.type === 'pageContent') {
+                            setContent(content.content);
+                        }
+                    });
+                }
             });
         }   
     }, []);
@@ -35,19 +40,19 @@ const Information= () => {
     return (
         <div className="info">
             <div className="heroImage">
-            <picture>
-                <source media="(max-width: 380px)" srcSet={smallHeader}/>
-                <source media="(max-width: 780px)" srcSet={mediumHeader}/>
-                <source media="(min-width: 780px)" srcSet={largeHeader}/>
-                <img src={largeHeader} alt="tyg med blommönster" />
-            </picture>
+                <picture>
+                    <source media="(max-width: 380px)" srcSet={smallHeader}/>
+                    <source media="(max-width: 780px)" srcSet={mediumHeader}/>
+                    <source media="(min-width: 780px)" srcSet={largeHeader}/>
+                    <img src={largeHeader} alt="tyg med blommönster" />
+                </picture>
             </div>
             <div className="informationTextAndImages">
                 {content ? (
                     <div className="textWrapper informationText" dangerouslySetInnerHTML={createMarkup()}>
 
                     </div>
-                ) : (<div className="informationText"><p>Laddar informationen</p></div>)}
+                ) : (<p>{informationToUser}</p>)}
                 <div className="informationImg">
                     <div className="imgWrapper">
                     <picture>

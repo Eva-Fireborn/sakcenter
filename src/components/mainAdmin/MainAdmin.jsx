@@ -4,6 +4,7 @@ import AdminWorkshopPage from './AdminPages/AdminWorkshopPage';
 import AdminInformationPage from './AdminPages/AdminInformationPage';
 import AdminGalleryPage from './AdminPages/AdminGalleryPage';
 import AdminNewsPage from './AdminPages/AdminNewsPage';
+import AdminContactPage from './AdminPages/AdminContactPage';
 import Hash from 'object-hash';
 import API from '../../helperFunctions/ApiCalls';
 import Button from '../reusables/CallToActionButton';
@@ -23,7 +24,9 @@ const MainAdmin= () => {
     const sendPassword = () => {
         const password = Hash(inputValue);
         API.login(password, res => {
-            if (res.data.body) {
+            if (res === 'error') {
+                setWrongPassword('Ingen anslutning till databasen, försök igen.')
+            } else if (res.data.body) {
                 setLoggedIn(true);
                 updateInputValue('');
             } else {
@@ -63,12 +66,14 @@ const MainAdmin= () => {
                 <li><button onClick={() => setIndex(2)}>Redigera "Uthyrning"</button></li>
                 <li><button onClick={() => setIndex(3)}>Redigera "Sortiment"</button></li>
                 <li><button onClick={() => setIndex(4)}>Redigera "Viktig nyhet"</button></li>
+                <li><button onClick={() => setIndex(5)}>Redigera "Kontakt"</button></li>
             </ul>
             {index === 0 ? (<AdminAboutPage />) : (null)}
             {index === 1 ? (<AdminWorkshopPage />) : (null)}
             {index === 2 ? (<AdminInformationPage />) : (null)}
             {index === 3 ? (<AdminGalleryPage />) : (null)}
             {index === 4 ? (<AdminNewsPage />) : (null)}
+            {index === 5 ? (<AdminContactPage />) : (null)}
             </>
         ) : (
             <div className="logInWindow">

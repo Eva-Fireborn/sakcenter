@@ -21,8 +21,7 @@ const Header = ({ Link, NavLink }) => {
                         if (moment().format(content.endDate) > moment().format()) {
                             setMessage(content.message);
                         } else {
-                            API.deleteImportantNews(content.id, res => {
-                            });
+                            API.deleteImportantNews(content.id, res => {});
                         }
                     })
                 }
