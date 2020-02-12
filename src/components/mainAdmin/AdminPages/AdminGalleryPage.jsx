@@ -19,7 +19,7 @@ const AdminGalleryPage= () => {
                 setUserInformation('Innehållet kunde inte laddas, prova igen.')
             } else if (result && result.length) {
                 result.forEach( res => {
-                    if (res.type === 'pageContent')
+                    if (res.type === 'galleryPage')
                         setTextfield(res.content);
                 });
                 setLoading(true);
@@ -37,7 +37,7 @@ const AdminGalleryPage= () => {
             } else if (result && result.length) {
                 result.forEach( res => {
                     instagramresponse.push(res);
-                })
+                });
                 setInstagramPosts(instagramresponse);
             }
         });

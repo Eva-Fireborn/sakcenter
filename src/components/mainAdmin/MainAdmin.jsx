@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from "react-router-dom";
 import AdminAboutPage from './AdminPages/AdminAboutPage';
 import AdminWorkshopPage from './AdminPages/AdminWorkshopPage';
 import AdminInformationPage from './AdminPages/AdminInformationPage';
@@ -77,6 +78,7 @@ const MainAdmin= () => {
             </>
         ) : (
             <div className="logInWindow">
+                <Link className="returnHome" to="/">Gå tillbaka till startsidan</Link>
                 <p>Lösenord:</p>
                 <input type="password" value={inputValue} onChange={(e) => updateField(e)}/>
                 <Button buttonText="Logga in" onClick={sendPassword} />

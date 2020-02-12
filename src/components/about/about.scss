@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: center;
 
+
     .heroImage {
         width: 100%;
         height: 80px;
@@ -24,91 +25,83 @@
         }
     }
 
-    .aboutText {
+    .contentWrapper {
+        display: flex;
+        flex-direction: column;
         width: 100%;
-        //background-color: $white;
-        //padding: $smallPadding;
-        margin-bottom: $smallPadding;
-        //$standardBorderRadius;
-        align-self: center;
-        padding: 0 20px;
 
-        @media (min-width: $screen-desktop) {
-            //margin-bottom: $mediumPadding;
-            padding: $mediumPadding;
-            width: 80%;
+        @media (min-width: 1230px) {
+            flex-direction: row;
         }
     }
+
+    .textBlockAbout {
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @media (min-width: 1230px) {
+            width: 500px;
+            padding: 50px 0;
+            align-items: flex-start;
+        }
+
+        .aboutText {
+            max-width: 500px;
+        }
+
+        .ABF {
+            text-align: center;
+
+            @media (min-width: 1230px) {
+                text-align: left;
+            }
+
+            > img {
+                width: 175px;
+            }
+        }
+    }
+
+    
 
     .aboutPictures {
         width: 100%;
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        padding: 20px;
+        align-items: center;
 
-        .upperBlock,
-        .bottomBlock {
-            width: 100%;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
+        @media (min-width: 1230px) {
+            flex: 1;
+            padding: 70px 0 50px;
+        }
 
-            @media (min-width: $screen-desktop) {
-                flex-direction: row;
+        .image {
+            width: 325px;
+            height: calc(325px / 1.5);
+            border-radius: $standardBorderRadius;
+            position: relative;
+            margin-bottom: 50px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+            &:last-child {
+                margin-bottom: 0;
             }
 
-            .largeImageBlock {
-                flex: 1;
-                overflow: hidden;
-                position: relative;
-                margin: 5px;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-                @media (min-width: $screen-desktop) {
-                    margin: 2px;
-                }
-
-                > img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    object-position: center;
-                }
+            @media (min-width: 650px) {
+                width: 500px;
+                height: calc(500px / 1.5);
             }
 
-            .smallImageBlock {
-                flex: 1;
-                overflow: hidden;
-                height: 60%;
-                position: relative;
-                margin: 5px;
-                
-
-                @media (min-width: $screen-desktop) {
-                    margin: 2px;
-                }
-
-                > img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    object-position: center;
-                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-                    @media (min-width: $screen-desktop) {
-                        width: 50%;
-                    }
-                }
+            @media (min-width: 1650px) {
+                width: 700px;
+                height: calc(700px / 1.5);
             }
-            .right {
-                align-self: flex-end;
-            }
-
-            .left {
-                display: flex;
-                justify-content: flex-end;
-            }
-
             .imageOverlay {
                 position: absolute;
                 top: 0;
@@ -120,19 +113,12 @@
                 opacity: 0.2;
             }
 
-            .small {
+            img {
                 width: 100%;
-
-                @media (min-width: $screen-desktop) {
-                    width: 50%;
-                }
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
             }
-
-            .rightPosition {
-                left: auto;
-                right: 0;
-            }
-            
         }
     }
 }

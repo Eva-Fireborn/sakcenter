@@ -16,7 +16,7 @@ const AdminInformationPage= () => {
                 setUserInformation('Innehållet kunde inte laddas, prova igen.');
             } else if (result && result.length) {
                 result.forEach( res => {
-                    if (res.type === 'pageContent')
+                    if (res.type === 'informationPage')
                         setTextfield(res.content);
                 });
                 setLoading(true);

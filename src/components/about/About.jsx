@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useGlobalState } from '../../helperFunctions/GlobalState';
 import API from '../../helperFunctions/ApiCalls';
-import Lamps from '../../img/lampor.jpg';
-import Police from '../../img/polis-rekvisita-2.jpg';
-import PicToys from '../../img/leksaker.jpg';
-import EpokPic from '../../img/epok-förpackningar.jpg';
 import largeHeader from '../../img/tygbild-blommor-1920px.jpg';
 import mediumHeader from '../../img/tygbild-blommor-780px.jpg';
 import smallHeader from '../../img/tygbild-blommor-380px.jpg';
+import largePolis from '../../img/polisprylar-1920px.jpg';
+import mediumPolis from '../../img/polisprylar-780px.jpg';
+import largeEpok from '../../img/epok-förpackningar-1920px.jpg';
+import mediumEpok from '../../img/epok-förpackningar-780px.jpg';
+import ABFlogo from '../../img/ABFlogo.png';
 import './about.scss';
 
 const About = () => {
@@ -17,7 +18,6 @@ const About = () => {
     useEffect(()=> {
         if(!content) {
             API.getAboutPage(res => {
-                console.log(res);
                 if (res === 'error') {
                     setInformationToUser('Något har gått fel, prova att ladda om sidan.');
                 } else if (res && res.length) {
@@ -46,30 +46,34 @@ const About = () => {
                 <img src={largeHeader} alt="tyg med blommönster" />
             </picture>
             </div>
-            {content ? (
-                <div className="textWrapper aboutText" dangerouslySetInnerHTML={createMarkup()}>
+            <div className="contentWrapper">
+                {content ? (
+                    <div className="textBlockAbout">
+                        <div className="textWrapper aboutText" dangerouslySetInnerHTML={createMarkup()}>
 
-                </div>
-            ) : (<p>{informationToUser}</p>)}
-            <div className="aboutPictures">
-                <div className="upperBlock">
-                    <div className="largeImageBlock">
+                        </div>
+                        <div className="ABF">
+                            <p>Sakcenter drivs i samarbete med</p>
+                            <img src={ABFlogo} alt="ABF logotyp" />
+                        </div>
+                    </div>
+                ) : (<p>{informationToUser}</p>)}
+                <div className="aboutPictures">
+                    <div className="image">
                         <div className="imageOverlay" />
-                        <img src={EpokPic} alt="Hylla med väskor" />
+                        <picture>
+                            <source media="(max-width: 780px)" srcSet={mediumEpok}/>
+                            <source media="(min-width: 780px)" srcSet={largeEpok}/>
+                            <img src={largeEpok} alt="Rekvisita, Epokförpackningar" />
+                        </picture>
                     </div>
-                    <div className="smallImageBlock right">
-                        <div className="imageOverlay small" />
-                        <img className="mummy" src={Police} alt="Sarkofag med mumie" />
-                    </div>
-                </div>
-                <div className="bottomBlock">
-                <div className="smallImageBlock left">
-                    <div className="imageOverlay small rightPosition" />
-                        <img className="toys" src={Lamps} alt="Leksaker" />
-                    </div>
-                    <div className="largeImageBlock">
+                    <div className="image">
                         <div className="imageOverlay" />
-                        <img className="bookshelf" src={PicToys} alt="Lampor" />
+                        <picture>
+                            <source media="(max-width: 780px)" srcSet={mediumPolis}/>
+                            <source media="(min-width: 780px)" srcSet={largePolis}/>
+                            <img src={largePolis} alt="Rekvisita, Polissaker" />
+                        </picture>
                     </div>
                 </div>
             </div>

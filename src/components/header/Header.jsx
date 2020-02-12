@@ -15,7 +15,7 @@ const Header = ({ Link, NavLink }) => {
 
     useEffect(()=> {
         if (message === null) {
-            /*API.getImportantNews(res => {
+            API.getImportantNews(res => {
                 if(res && res.length) {
                     res.forEach(content => {
                         if (moment().format(content.endDate) > moment().format()) {
@@ -25,7 +25,7 @@ const Header = ({ Link, NavLink }) => {
                         }
                     })
                 }
-            });*/
+            });
         }
     }, []);
 

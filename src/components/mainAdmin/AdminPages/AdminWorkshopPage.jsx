@@ -16,7 +16,7 @@ const AdminWorkshopPage= () => {
                 setUserInformation('Innehållet kunde inte laddas, prova igen.');
             } else if (result && result.length) {
                 result.forEach( res => {
-                    if (res.type === 'pageContent')
+                    if (res.type === 'workshopPage')
                         setTextfield(res.content);
                 });
                 setLoading(true);

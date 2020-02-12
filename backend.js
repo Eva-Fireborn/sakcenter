@@ -28,7 +28,6 @@ function connectToDB(callback) {
   
   connection.query('CREATE TABLE contactPage (id INT AUTO_INCREMENT PRIMARY KEY, type VARCHAR(255), content TEXT)', function (err, result) {
       if (err) throw err;
-      console.log('Table created: ', result);
       connection.end()
   })
   
@@ -36,7 +35,6 @@ function connectToDB(callback) {
    const sql = "INSERT INTO contactPage (type, content) VALUES ('pageContent', '<h1>Kontakt</h1>')";
   connection.query(sql, function (err, result) {
       if (err) throw err;
-      console.log('Inserted: ', result);
       connection.end()
   })*/
 
@@ -48,7 +46,7 @@ function connectToDB(callback) {
 
     connectToDB(connection => {
       //Insert new password
-      // const sql = `INSERT INTO admin (type, content) VALUES ('password', '${newPassword}')`
+      //const sql = `INSERT INTO admin (type, content, user) VALUES ('password', '${newPassword}', 'admin')`
       connection.query("SELECT * FROM admin WHERE type = 'password'", function (err, result) {
         if (err) {
           connection.end()
@@ -131,7 +129,6 @@ function connectToDB(callback) {
   }
 
   function retrieveWorkshopPage(callback) {
-    console.log('calling on connection');
     connectToDB(connection => {
       connection.query("SELECT * FROM pages WHERE type = 'workshopPage'", function (err, result) {
         if (err) {
@@ -140,7 +137,6 @@ function connectToDB(callback) {
         }
         if (result) {
           callback(result);
-          console.log('result: ', result);
         connection.end()
         }
       })
@@ -179,7 +175,7 @@ function connectToDB(callback) {
 
   function updateAboutPage(newContent, response) {
 
-    const request = `UPDATE aboutPage SET content = '${newContent}' WHERE type = 'pageContent'`
+    const request = `UPDATE pages SET content = '${newContent}' WHERE type = 'aboutPage'`
 
     connectToDB(connection => {
       connection.query(request, function (err, result) {
@@ -197,7 +193,7 @@ function connectToDB(callback) {
 
   function updateWorkshopPage(newContent, response) {
 
-    const request = `UPDATE workshopPage SET content = '${newContent}' WHERE type = 'pageContent'`
+    const request = `UPDATE pages SET content = '${newContent}' WHERE type = 'workshopPage'`
 
     connectToDB(connection => {
       connection.query(request, function (err, result) {
@@ -215,7 +211,7 @@ function connectToDB(callback) {
 
   function updateContactPage(newContent, response) {
 
-    const request = `UPDATE contactPage SET content = '${newContent}' WHERE type = 'pageContent'`
+    const request = `UPDATE pages SET content = '${newContent}' WHERE type = 'contactPage'`
 
     connectToDB(connection => {
       connection.query(request, function (err, result) {
@@ -233,7 +229,7 @@ function connectToDB(callback) {
 
   function updateInformationPage(newContent, response) {
 
-    const request = `UPDATE informationPage SET content = '${newContent}' WHERE type = 'pageContent'`
+    const request = `UPDATE pages SET content = '${newContent}' WHERE type = 'informationPage'`
 
     connectToDB(connection => {
       connection.query(request, function (err, result) {
@@ -251,7 +247,7 @@ function connectToDB(callback) {
 
   function updateGalleryPage(newContent, response) {
 
-    const request = `UPDATE galleryPage SET content = '${newContent}' WHERE type = 'pageContent'`
+    const request = `UPDATE pages SET content = '${newContent}' WHERE type = 'galleryPage'`
 
     connectToDB(connection => {
       connection.query(request, function (err, result) {

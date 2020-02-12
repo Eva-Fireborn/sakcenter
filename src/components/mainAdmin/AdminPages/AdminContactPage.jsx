@@ -16,7 +16,7 @@ const AdminContactPage = () => {
                 setUserInformation('Innehållet kunde inte laddas, prova igen.');
             } if (result && result.length) {
                 result.forEach( res => {
-                    if (res.type === 'pageContent')
+                    if (res.type === 'contactPage')
                         setTextfield(res.content);
                         console.log('result: ', res);
                 });

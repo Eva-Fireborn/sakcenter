@@ -16,14 +16,15 @@ const ImportantNews = ({ news }) => {
     return (
         <div className="importantNews">
             {displayTicker ? (
-                <Ticker
-                mode="smooth"
-                height={25}
-            >
-                {() => (
-                    <p className="importantText">{news}</p>
-                )}
-            </Ticker>
+                
+                    <Ticker
+                        mode="await"
+                        height={25}
+                    >
+                        {() => (
+                        <div className="tickerWrapper"><p className="importantText">{news}</p></div>
+                        )}
+                    </Ticker>
             ) : (
                 <p className="importantText">{news}</p>
             )}
