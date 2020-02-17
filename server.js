@@ -1,7 +1,7 @@
 const express = require('express');
 const expServer = express();
 const httpServer = require('http').createServer(expServer);
-const port = 4000;
+const port = process.env.PORT || 5000;
 const { 
 	retrieveAboutPage,
 	updateAboutPage,

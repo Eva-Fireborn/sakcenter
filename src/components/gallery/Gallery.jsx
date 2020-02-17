@@ -6,6 +6,9 @@ import sakcenterPic from '../../img/överblicksbild-av-sakcenter1000px.png';
 import largeHeader from '../../img/tygbild-brunt-1920px.jpg';
 import mediumHeader from '../../img/tygbild-brunt-780px.jpg';
 import smallHeader from '../../img/tygbild-brunt-380px.jpg';
+import dirtyDownLarge from '../../img/dirty-down-spray-1080px.jpg';
+import dirtyDownMedium from '../../img/dirty-down-spray-780px.jpg';
+import dirtyDownSmall from '../../img/dirty-down-spray-380px.jpg';
 import './gallery.scss';
 
 const Gallery= () => {
@@ -71,7 +74,12 @@ const Gallery= () => {
                 )}
                 
                 <div className="productImg">
-                    Bild på Dirty down + Sticky stuff
+                    <picture>
+                        <source media="(max-width: 380px)" srcSet={dirtyDownSmall}/>
+                        <source media="(max-width: 780px)" srcSet={dirtyDownMedium}/>
+                        <source media="(max-width: 780px)" srcSet={dirtyDownLarge}/>
+                        <img src={dirtyDownLarge} alt="Dirty down sprayflaskor och Sticky stuff rullar" />
+                    </picture>
                 </div>
             </div>
                 {instagramPosts && instagramPosts.length && (

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:4000';
+const url = 'http://localhost:5000';
 
 function getAboutPage(callback) {
     axios.get(`${url}/APIretrieveAbout`)

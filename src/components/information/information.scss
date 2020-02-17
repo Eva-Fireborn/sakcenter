@@ -33,8 +33,14 @@
             width: 100%;
             padding: $smallPadding;
             margin-bottom: $smallPadding;
+
+            > *:first-child {
+                margin-top: 0;
+            }
     
             @media (min-width: $screen-desktop) {
+
+                
                 padding: $mediumPadding;
                 column-count: 2;
                 column-width: 45%;
