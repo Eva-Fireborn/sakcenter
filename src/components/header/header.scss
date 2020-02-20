@@ -25,6 +25,20 @@
             display: flex;
             justify-content: flex-end;
 
+            .hamburger {
+                height: 50px;
+                width: 50px;
+                border-radius: $standardBorderRadius;
+                background-color: $red;
+                margin: 10px 10px 0 0;
+
+                > svg {
+                    height: 30px;
+                    fill: $white;
+                    margin: 10px
+                }
+            }
+
             &.-grey {
                 background-color: $black;
                 animation-name: upperMenuVisible;

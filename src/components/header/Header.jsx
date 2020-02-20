@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Logo from '../../img/SC-logo.png';
+import {ReactComponent as Hamburger} from '../../img/hamburger-menu.svg';
 import ImportantNews from '../importantNews/ImportantNews';
 import API from '../../helperFunctions/ApiCalls';
 import {ReactComponent as CloseCross} from '../../img/closeCross.svg';
@@ -31,9 +32,26 @@ const Header = ({ Link, NavLink }) => {
         }
     }, []);
 
+    const checkSizeForLogo = () => {
+        if(window.innerWidth > 950) {
+            return <img src={Logo} alt="Sakcenter logotyp" type="button" onClick={() => displayMenu(activeMenu)}/>;
+        } else {
+            return <div className="hamburger" type="button" onClick={() => displayMenu(activeMenu)}><Hamburger /></div>;
+        }
+    }
+
+    useEffect(() => {
+        checkSizeForLogo();
+        window.addEventListener('resize', checkSizeForLogo);
+        return () => {
+          window.removeEventListener('resize', checkSizeForLogo);
+        };
+    }, []);
+
     const displayMenu = (value = false) => {
         setMenu(!value);
     }
+    
 
     return (
         <header className="headerBar">
@@ -42,7 +60,7 @@ const Header = ({ Link, NavLink }) => {
                     {activeMenu ? (
                         <CloseCross onClick={displayMenu} type="button" />
                     ) : (
-                        <img src={Logo} alt="Sakcenter logotyp" type="button" onClick={() => displayMenu(activeMenu)}/>
+                        checkSizeForLogo()
                     )}
                 </div>
                 <ul className={clsx('menuBar', activeMenu ? '-visible' : '-hidden')}>

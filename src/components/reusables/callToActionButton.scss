@@ -8,8 +8,7 @@
     border: none;
 
     &:active{
-        color: $brown;
-        background-color: $white;
+        color: $black;
     }
 
     @media (min-width: $screen-desktop) {
