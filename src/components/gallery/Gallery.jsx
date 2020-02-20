@@ -75,7 +75,6 @@ const Gallery= () => {
                 
                 <div className="productImg">
                     <picture>
-                        <source media="(max-width: 380px)" srcSet={dirtyDownSmall}/>
                         <source media="(max-width: 780px)" srcSet={dirtyDownMedium}/>
                         <source media="(max-width: 780px)" srcSet={dirtyDownLarge}/>
                         <img src={dirtyDownLarge} alt="Dirty down sprayflaskor och Sticky stuff rullar" />

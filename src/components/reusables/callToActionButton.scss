@@ -7,15 +7,15 @@
     border-radius: $standardBorderRadius;
     border: none;
 
+    &:active{
+        color: $brown;
+        background-color: $white;
+    }
+
     @media (min-width: $screen-desktop) {
         &:hover {
             background-color: $red;
             transition: background-color $standardTransitionTime;
-        }
-    
-        &:active{
-            color: $brown;
-            background-color: $white;
         }
     }
 }

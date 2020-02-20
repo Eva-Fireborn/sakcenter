@@ -102,6 +102,7 @@ a {
         &:hover {
             cursor: pointer;
             color: $brown;
+            transition: color $standardTransitionTime;
         }
     }
 }
