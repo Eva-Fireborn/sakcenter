@@ -2,6 +2,9 @@
 
 .contact {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .heroImage {
         background-color: black;
@@ -23,12 +26,21 @@
         }
     }
 
+    .contactText {
+        max-width: 1050px;
+        margin: 20px;
+
+        @media (min-width: $screen-desktop) {
+            margin: 50px 0;
+        }
+    }
+
     .contactWrapper {
         display: flex;
         flex-wrap: wrap;
-        justify-items: center;
+        justify-content: center;
         width: 100%;
-        padding: 20px;
+        max-width: 1314px;
     }
 }
 

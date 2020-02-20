@@ -57,7 +57,7 @@ const Contact= () => {
                 <ContactCard name={'Eva Fireborn'} email={'eva@sakcenter.se'} phone={'0763-47 88 52'} pic={clownLamp} />
                 <ContactCard name={'Kristina Sandfors'} email={'kristina@sakcenter.se'} phone={'0702-94 45 05'} pic={lighter} />
                 <ContactCard name={'Petra Valén'} email={'petra@sakcenter.se'} phone={'0730-81 91 42'} pic={rollerBladeImg} />
-                <ContactCard name={'Erika von Weissenberg'} email={'erika@sakcenter.se'} phone={'0707-45 15 14'} pic={unicorn} />
+                <ContactCard name={'Erika Weissenberg'} email={'erika@sakcenter.se'} phone={'0707-45 15 14'} pic={unicorn} />
                 <ContactCard name={'Mari Hansson'} email={'mari@sakcenter.se'} phone={'0730-31 79 99'} pic={painting} />
                 <ContactCard name={'Liv Ulfsdóttir'} email={'liv@sakcenter.se'} phone={'0704-38 45 91'} pic={encyclopedia} />
             </div>

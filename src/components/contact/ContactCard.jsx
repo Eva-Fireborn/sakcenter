@@ -1,12 +1,11 @@
 import React from 'react';
-import clsx from 'clsx';
 import './contactCard.scss';
 
 const ContactCard = ({ name, email, phone, pic }) => {
     return (
-        <div className={clsx('contactCard', name === 'Sakcenter' && 'logoCard')}>
+        <div className="contactCard">
             <div className="innerWrapper">
-                <div className={clsx('imgWrapper', name === 'Sakcenter' && 'logo')}>
+                <div className="imgWrapper">
                     <img src={pic} alt={name} />
                 </div>
                 <div className="infoWrapper">
