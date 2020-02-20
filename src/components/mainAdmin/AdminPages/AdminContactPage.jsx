@@ -18,7 +18,6 @@ const AdminContactPage = () => {
                 result.forEach( res => {
                     if (res.type === 'contactPage')
                         setTextfield(res.content);
-                        console.log('result: ', res);
                 });
                 setLoading(true);
             }

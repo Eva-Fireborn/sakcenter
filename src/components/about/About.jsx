@@ -23,7 +23,6 @@ const About = () => {
                 } else if (res && res.length) {
                     res.forEach(content => {
                         if (content.type === 'aboutPage') {
-                            console.log('setting content')
                             setContent(content.content);
                         }
                     });

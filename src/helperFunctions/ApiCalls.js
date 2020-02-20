@@ -85,7 +85,6 @@ function updateImportantNews(newContent, callback) {
 }
 
 function deleteImportantNews(id, callback) {
-    console.log('sending: ', id);
     axios({
         method: 'post',
         url: `${url}/APIdeleteImportantNews`,
@@ -98,7 +97,6 @@ function deleteImportantNews(id, callback) {
 }
 
 function removeInstagramPost(id, callback) {
-    console.log('sending: ', id);
     axios({
         method: 'post',
         url: `${url}/APIdeleteInstagramPost`,
