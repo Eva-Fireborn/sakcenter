@@ -89,13 +89,26 @@ p {
 a {
     font-family: 'Proxima Nova Alt';
     font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 22px;
     color: $black;
+    margin: 10px 0 5px;
     text-decoration: none;
 
-    &:hover {
-        cursor: pointer;
+    @media (min-width: $screen-desktop) {
+        font-size: 21px;
+        line-height: 25px;
+
+        &:hover {
+            cursor: pointer;
+            color: $brown;
+        }
+    }
+}
+
+.textWrapper {
+    > *:first-child {
+        margin-top: 0;
     }
 }
 

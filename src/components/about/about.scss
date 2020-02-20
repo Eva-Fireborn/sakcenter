@@ -10,7 +10,7 @@
         width: 100%;
         height: 80px;
         overflow: hidden;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: $standard-shadow;
 
         @media (min-width: $screen-desktop) {
             height: 175px;
@@ -29,10 +29,6 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-
-        @media (min-width: 1230px) {
-            flex-direction: row;
-        }
     }
 
     .textBlockAbout {
@@ -42,25 +38,36 @@
         flex-direction: column;
         align-items: center;
 
-        @media (min-width: 1230px) {
-            width: 500px;
-            padding: 50px 0;
-            align-items: flex-start;
+        @media (min-width: $screen-desktop) {
+            padding: 50px 0 0;
         }
 
         .aboutText {
             max-width: 500px;
+
+            @media (min-width: $screen-desktop) {
+                max-width: 1400px;
+                column-count: 2;
+                column-width: 45%;
+                column-gap: 4em;
+            }
         }
 
         .ABF {
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+            padding: 20px 0;
 
-            @media (min-width: 1230px) {
-                text-align: left;
+            @media (min-width: $screen-desktop) {
+                padding: 50px 0;
             }
 
             > img {
                 width: 175px;
+                margin: 0 auto;
             }
         }
     }
@@ -76,8 +83,9 @@
         align-items: center;
 
         @media (min-width: 1230px) {
-            flex: 1;
-            padding: 70px 0 50px;
+            flex-direction: row;
+            padding: 50px 0;
+            justify-content: space-around;
         }
 
         .image {
@@ -87,7 +95,7 @@
             position: relative;
             margin-bottom: 50px;
             overflow: hidden;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            box-shadow: $standard-shadow;
 
             &:last-child {
                 margin-bottom: 0;
@@ -96,6 +104,10 @@
             @media (min-width: 650px) {
                 width: 500px;
                 height: calc(500px / 1.5);
+            }
+
+            @media (min-width: 1230px) {
+                margin-bottom: 0;
             }
 
             @media (min-width: 1650px) {
