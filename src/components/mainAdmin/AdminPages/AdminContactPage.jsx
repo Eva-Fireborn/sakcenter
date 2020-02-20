@@ -62,7 +62,7 @@ const AdminContactPage = () => {
                 <p>{userInformation}</p>
             )}
             <Button buttonText="Spara text" onClick={sendTextToServer}/>
-            <div className="wrapperText" dangerouslySetInnerHTML={createMarkup()}>
+            <div className="wrapperTextContact" dangerouslySetInnerHTML={createMarkup()}>
 
             </div>
         </div>

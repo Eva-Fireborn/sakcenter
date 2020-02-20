@@ -1,14 +1,28 @@
 @import '../../../styles/variables.scss';
 
 .adminWorkshop {
-    width: 90%;
+    width: 100%;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .editor {
-        width: 100%;
+        width: 80%;
+    }
+
+    button {
+        margin: 20px 0;
     }
     
-    .wrapperText {
-        width: 70%;
-        overflow: hidden;
+    .wrapperTextWorkshop {
+        max-width: 500px;
+
+        @media (min-width: $screen-desktop) {
+            max-width: 1400px;
+            column-count: 2;
+            column-width: 45%;
+            column-gap: 4em;
+        }
     }
 }

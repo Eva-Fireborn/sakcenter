@@ -75,13 +75,14 @@ const AdminNewsPage = () => {
         <div className="adminNews">
             {importantNews ? (
                 <div className="currentMessage">
-                    <p>Aktiv nyhet:</p>
+                    <p>De finns redan en aktiv nyhet:</p>
                     <p className="message">{importantNews.message} (Aktiv till {moment(importantNews.endDate).format("MMM Do YY")})</p>
                     <Button buttonText="Ta bort nyheten direkt" onClick={deleteCurrentNews} />
                 </div>
             ) : (
                 <div className="newMessage">
-                <textarea rows="3" cols="50" value={message} onChange={textOnChange} maxLength="150" placeholder="Skriv din viktiga nyhet, den kan max vara 150 tecken lång." />
+                <textarea rows="3" cols="100" value={message} onChange={textOnChange} maxLength="150" placeholder="Skriv din viktiga nyhet, den kan max vara 150 tecken lång." />
+                <p>Du måste sätta in ett datum på din nyhet. Nyheten kommer visas på hemsidan tills de datumet.</p>
                 <DatePicker 
                     onChange={dateOnChange}
                     value={selectedDate}

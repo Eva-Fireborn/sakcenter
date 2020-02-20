@@ -1,1 +1,21 @@
 @import '../../../styles/variables.scss';
+
+.adminContact {
+    width: 100%;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .editor {
+        width: 80%;
+    }
+
+    button {
+        margin: 20px 0;
+    }
+    
+    .wrapperTextContact {
+        max-width: 1050px;
+    }
+}

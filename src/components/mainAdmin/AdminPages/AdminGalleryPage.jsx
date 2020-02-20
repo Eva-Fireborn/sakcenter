@@ -80,7 +80,7 @@ const AdminGalleryPage= () => {
     }
 
     return (
-        <div className="adminInformation">
+        <div className="adminGallery">
             <div className="editor">
                 <h1>Redigerare för "sortiment" sidan</h1>
                 {finishedLoading ? (<Editor
@@ -103,22 +103,23 @@ const AdminGalleryPage= () => {
                     <p>{userInformation}</p>
                 )}
                 <Button buttonText="Spara text" onClick={sendTextToServer}/>
-                <div className="wrapperText" dangerouslySetInnerHTML={createMarkup()}>
+                <div className="wrapperTextGallery" dangerouslySetInnerHTML={createMarkup()}>
 
                 </div>
             </div>
             <div className="InstagramEditor">
-                <h3>Instagram bilder:</h3>
+                <h3>Redan inlagda Instagram bilder:</h3>
                 {instagramPosts && instagramPosts.length ? (
-                    <ul>
+                    <ul className="adminInstagramList">
                         {instagramPosts.map((post, index) => {
-                        return <li key={index}>{post.description} <span>({post.link})</span> <Button buttonText="Radera bilden" onClick={() => removePicture(post.id)} /> </li>
+                        return <li key={index}><p>{post.description} <span>({post.link})</span> <Button buttonText="Radera bilden" onClick={() => removePicture(post.id)} /></p> </li>
                         })}
                     </ul>
                 ) : (
                     <p>{userInformation}</p>
                 )}
                 <div className="addNewInstagramPost">
+                    <h3>Lägg till ny bild från Instagram</h3>
                     <p>Länk till Instagrambild, ex https://www.instagram.com/p/BfatBEXh_dW/</p>
                     <input type="text" onChange={updateLinkInput} value={instaLinkInput} />
                     <p>Beskrivning av bilden, ex Lampfötter</p>

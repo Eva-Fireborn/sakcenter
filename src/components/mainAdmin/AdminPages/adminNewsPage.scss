@@ -3,13 +3,26 @@
 .adminNews {
     display: flex;
     justify-content: center;
-    
+    padding: 100px;
+
     .newMessage {
         display: flex;
         flex-direction: column;
+
+        > textarea {
+            margin-bottom: 50px;
+        }
+
+        > button {
+            margin-top: 50px;
+        }
     }
 
     .currentMessage {
-        width: 50%;
+        width: 100%;
+
+        > p {
+            margin-bottom: 20px;
+        }
     }
 }

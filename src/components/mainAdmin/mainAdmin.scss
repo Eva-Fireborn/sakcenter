@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 100px;
 
     .adminHeaderWrapper {
         width: 100%;
@@ -20,20 +21,43 @@
 
         > h1 {
             text-align: center;
+            color: $white;
         }
 
         > button {
             position: relative;
-            left: calc(100vw - 150px);
+            left: calc(100vw - 200px);
             bottom: 10px;
             background-color: $red;
             color: $white;
             padding: 10px 20px;
             border: none;
+            border-radius: $standardBorderRadius;
 
         }
     }
 
+    .adminMenu {
+        display: flex;
+        list-style-type: none;
+
+        > li {
+            margin: 0 20px;
+
+            > button {
+                background-color: $red;
+                color: $white;
+                border: none;
+                padding: 10px;
+                border-radius: $standardBorderRadius;
+                box-shadow: $standard-shadow;
+
+                &:active {
+                    background-color: $black;
+                }
+            }
+        }
+    }
     .logInWindow {
         display: flex;
         flex-direction: column;

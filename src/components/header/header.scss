@@ -26,16 +26,16 @@
             justify-content: flex-end;
 
             .hamburger {
-                height: 50px;
-                width: 50px;
+                height: 45px;
+                width: 45px;
                 border-radius: $standardBorderRadius;
                 background-color: $red;
-                margin: 10px 10px 0 0;
+                margin: 5px 5px 0 0;
 
                 > svg {
                     height: 30px;
                     fill: $white;
-                    margin: 10px
+                    margin: 7px
                 }
             }
 

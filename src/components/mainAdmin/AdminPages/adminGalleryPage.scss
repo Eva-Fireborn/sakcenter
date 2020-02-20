@@ -1,14 +1,60 @@
 @import '../../../styles/variables.scss';
 
 .adminGallery {
-    width: 90%;
+    width: 100%;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .editor {
-        width: 100%;
+        width: 80%;
+    }
+
+    button {
+        margin: 20px 0;
     }
     
-    .wrapperText {
-        width: 70%;
-        overflow: hidden;
+    .wrapperTextGallery {
+        max-width: 800px;
+    }
+
+   
+
+    .InstagramEditor {
+        border-top: 1px solid $black;
+        width: 80%;
+
+        .adminInstagramList {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+    
+            > li {
+                padding: 20px 0;
+
+                span {
+                    color: $brown;
+                }
+
+                button {
+                    margin-left: 20px;
+                }
+            }
+        }
+
+        .addNewInstagramPost {
+            border-top: 1px solid $black;
+            
+            input {
+                width: 400px;
+                padding: 5px;
+            }
+
+            button {
+                margin-left: 20px;
+            }
+        }
     }
 }

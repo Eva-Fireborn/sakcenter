@@ -61,12 +61,12 @@ const MainAdmin= () => {
                 <h1>Admin</h1>
                 <button onClick={logout}>Logga ut</button>
             </div>
-            <ul>
+            <ul className="adminMenu">
                 <li><button onClick={() => setIndex(0)}>Redigera "Om oss"</button></li>
-                <li><button onClick={() => setIndex(1)}>Redigera "Workshops och föreläsningar"</button></li>
                 <li><button onClick={() => setIndex(2)}>Redigera "Uthyrning"</button></li>
                 <li><button onClick={() => setIndex(3)}>Redigera "Sortiment"</button></li>
                 <li><button onClick={() => setIndex(4)}>Redigera "Viktig nyhet"</button></li>
+                <li><button onClick={() => setIndex(1)}>Redigera "Workshops och föreläsningar"</button></li>
                 <li><button onClick={() => setIndex(5)}>Redigera "Kontakt"</button></li>
             </ul>
             {index === 0 ? (<AdminAboutPage />) : (null)}
@@ -85,8 +85,6 @@ const MainAdmin= () => {
                 {wrongPassword && (<p>{wrongPassword}</p>)}
             </div>
         )}
-        
-        
         </div>
     );
 };
