@@ -1,17 +1,21 @@
 @import '../../styles/variables.scss';
 
 .callToActionButton {
-    background-color: $red;
+    background-color: $brown;
     color: $white;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: $standardBorderRadius;
     border: none;
 
-    &:hover {
-        background-color: $black;
-    }
-
-    &:active{
-        color: $red;
+    @media (min-width: $screen-desktop) {
+        &:hover {
+            background-color: $red;
+            transition: background-color $standardTransitionTime;
+        }
+    
+        &:active{
+            color: $brown;
+            background-color: $white;
+        }
     }
 }

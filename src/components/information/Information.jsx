@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useGlobalState } from '../../helperFunctions/GlobalState';
 import Button from '../reusables/CallToActionButton';
 import API from '../../helperFunctions/ApiCalls';
+import { Link } from "react-router-dom";
 import largeHeader from '../../img/tygbild-röda-rosor-1920px.jpg';
 import mediumHeader from '../../img/tygbild-röda-rosor-780px.jpg';
 import smallHeader from '../../img/tygbild-röda-rosor-380px.jpg';
@@ -53,26 +54,28 @@ const Information= () => {
 
                     </div>
                 ) : (<p>{informationToUser}</p>)}
+                <Link to="/Sortiment"><Button buttonText={'Se vårt sortiment'} /></Link>
                 <div className="informationImg">
                     <div className="imgWrapper">
-                    <picture>
-                        <source media="(max-width: 380px)" srcSet={smallLamps}/>
-                        <source media="(max-width: 780px)" srcSet={mediumLamps}/>
-                        <source media="(min-width: 780px)" srcSet={largeLamps}/>
-                        <img src={largeLamps} alt="Bordslampor och lampskärmar" />
-                    </picture>
+                        <div className="imageOverlay" />
+                        <picture>
+                            <source media="(max-width: 380px)" srcSet={smallLamps}/>
+                            <source media="(max-width: 780px)" srcSet={mediumLamps}/>
+                            <source media="(min-width: 780px)" srcSet={largeLamps}/>
+                            <img src={largeLamps} alt="Bordslampor och lampskärmar" />
+                        </picture>
                     </div>
                     <div className="imgWrapper">
-                    <picture>
-                        <source media="(max-width: 380px)" srcSet={smallElectronics}/>
-                        <source media="(max-width: 780px)" srcSet={mediumElectronics}/>
-                        <source media="(min-width: 780px)" srcSet={largeElectronics}/>
-                        <img src={largeElectronics} alt="Retro teknik" />
-                    </picture>
+                        <div className="imageOverlay" />
+                        <picture>
+                            <source media="(max-width: 380px)" srcSet={smallElectronics}/>
+                            <source media="(max-width: 780px)" srcSet={mediumElectronics}/>
+                            <source media="(min-width: 780px)" srcSet={largeElectronics}/>
+                            <img src={largeElectronics} alt="Retro teknik" />
+                        </picture>
                     </div>
                 </div>
-                <Button buttonText={'Till galleriet'} />
-                </div>
+            </div>
         </div>
     )
 }
