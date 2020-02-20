@@ -8,7 +8,6 @@ import mediumHeader from '../../img/tygbild-brunt-780px.jpg';
 import smallHeader from '../../img/tygbild-brunt-380px.jpg';
 import dirtyDownLarge from '../../img/dirty-down-spray-1080px.jpg';
 import dirtyDownMedium from '../../img/dirty-down-spray-780px.jpg';
-import dirtyDownSmall from '../../img/dirty-down-spray-380px.jpg';
 import './gallery.scss';
 
 const Gallery= () => {
@@ -54,7 +53,7 @@ const Gallery= () => {
                 <picture>
                     <source media="(max-width: 380px)" srcSet={smallHeader}/>
                     <source media="(max-width: 780px)" srcSet={mediumHeader}/>
-                    <source media="(max-width: 780px)" srcSet={largeHeader}/>
+                    <source media="(min-width: 780px)" srcSet={largeHeader}/>
                     <img src={largeHeader} alt="tyg med bruna mönster" />
                 </picture>
             </div>
@@ -76,7 +75,7 @@ const Gallery= () => {
                 <div className="productImg">
                     <picture>
                         <source media="(max-width: 780px)" srcSet={dirtyDownMedium}/>
-                        <source media="(max-width: 780px)" srcSet={dirtyDownLarge}/>
+                        <source media="(min-width: 780px)" srcSet={dirtyDownLarge}/>
                         <img src={dirtyDownLarge} alt="Dirty down sprayflaskor och Sticky stuff rullar" />
                     </picture>
                 </div>

@@ -64,6 +64,7 @@
             margin-bottom: $smallPadding;
             overflow: hidden;
             box-shadow: $standard-shadow;
+            border-radius: $standardBorderRadius;
 
             img {
                 width: 100%;
@@ -134,11 +135,13 @@
 
         .instagramPost {
             width: 320px;
+            height: 430px;
             overflow: hidden;
             margin: 20px 0;
+            box-shadow: $standard-shadow;
 
             @media (min-width: $screen-desktop) {
-                margin: 0 50px;
+                margin:50px;
             }
         }
     }

@@ -4,6 +4,10 @@ import API from '../../helperFunctions/ApiCalls';
 import largeHeader from '../../img/tygbild-grönt-med-blommor-1920px.jpg';
 import mediumHeader from '../../img/tygbild-grönt-med-blommor-780px.jpg';
 import smallHeader from '../../img/tygbild-grönt-med-blommor-380px.jpg';
+import mediumKitchen from '../../img/köksprylar-780px.jpg';
+import largeKitchen from '../../img/köksprylar-1920px.jpg';
+import mediumToys from '../../img/leksaker-780px.jpg';
+import largeToys from '../../img/leksaker-1920px.jpg';
 import './workshops.scss';
 
 const Workshops= () => {
@@ -44,6 +48,24 @@ const Workshops= () => {
                     
                 </div>
             ) : (<p>{informationToUser}</p>)}
+            <div className="workshopImg">
+                    <div className="imgWrapper">
+                        <div className="imageOverlay" />
+                        <picture>
+                            <source media="(max-width: 780px)" srcSet={mediumKitchen}/>
+                            <source media="(min-width: 780px)" srcSet={largeKitchen}/>
+                            <img src={largeKitchen} alt="Köksredskap" />
+                        </picture>
+                    </div>
+                    <div className="imgWrapper">
+                        <div className="imageOverlay" />
+                        <picture>
+                            <source media="(max-width: 780px)" srcSet={mediumToys}/>
+                            <source media="(min-width: 780px)" srcSet={largeToys}/>
+                            <img src={largeToys} alt="Barnleksaker" />
+                        </picture>
+                    </div>
+                </div>
         </div>
     )
 }

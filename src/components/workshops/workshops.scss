@@ -10,7 +10,7 @@
         width: 100%;
         height: 80px;
         overflow: hidden;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: $standard-shadow;
 
         @media (min-width: $screen-desktop) {
             border-radius: $standardBorderRadius;
@@ -26,18 +26,75 @@
     }
 
     .workshopText {
-        width: 100%;
-        margin-bottom: $smallPadding;
-        align-self: center;
-        padding: 0 20px;
+        max-width: 500px;
+        padding: 20px;
 
         @media (min-width: $screen-desktop) {
-            //margin-bottom: $mediumPadding;
-            padding: $mediumPadding;
-            width: 80%;
+            max-width: 1400px;
             column-count: 2;
             column-width: 45%;
-            column-gap: $mediumPadding;
+            column-gap: 4em;
+            padding: 50px 0;
+        }
+    }
+
+    .workshopImg {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+
+        @media (min-width: 1230px) {
+            flex-direction: row;
+            padding: 50px 0;
+            justify-content: space-around;
+        }
+
+        > .imgWrapper {
+            width: 325px;
+            height: calc(325px / 1.5);
+            border-radius: $standardBorderRadius;
+            position: relative;
+            margin-bottom: 50px;
+            overflow: hidden;
+            box-shadow: $standard-shadow;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            @media (min-width: 650px) {
+                width: 500px;
+                height: calc(500px / 1.5);
+            }
+
+            @media (min-width: 1230px) {
+                margin-bottom: 0;
+            }
+
+            @media (min-width: 1650px) {
+                width: 700px;
+                height: calc(700px / 1.5);
+            }
+            .imageOverlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: $grey;
+                z-index: 2;
+                opacity: 0.2;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
         }
     }
 }
